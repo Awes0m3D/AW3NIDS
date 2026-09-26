@@ -1,0 +1,108 @@
+# -*- coding: utf-8 -*-
+
+################################################################################
+## Form generated from reading UI file 'about_dialog.ui'
+##
+## Created by: Qt User Interface Compiler version 6.11.1
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
+
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QDialog, QLabel, QPushButton,
+    QSizePolicy, QWidget)
+
+class Ui_AboutDialog(object):
+    def setupUi(self, AboutDialog):
+        if not AboutDialog.objectName():
+            AboutDialog.setObjectName(u"AboutDialog")
+        AboutDialog.resize(450, 400)
+        AboutDialog.setStyleSheet(u"QDialog{\n"
+"\n"
+"    background:#202124;\n"
+"\n"
+"}\n"
+"\n"
+"QLabel{\n"
+"\n"
+"    color:white;\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton{\n"
+"\n"
+"    background:#0066CC;\n"
+"\n"
+"    color:white;\n"
+"\n"
+"    border-radius:6px;\n"
+"\n"
+"    padding:8px;\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"\n"
+"    background:#1E88E5;\n"
+"\n"
+"}")
+        self.btnClose = QPushButton(AboutDialog)
+        self.btnClose.setObjectName(u"btnClose")
+        self.btnClose.setGeometry(QRect(190, 360, 75, 31))
+        self.lblAboutTitle = QLabel(AboutDialog)
+        self.lblAboutTitle.setObjectName(u"lblAboutTitle")
+        self.lblAboutTitle.setGeometry(QRect(150, 10, 158, 31))
+        self.lblAboutTitle.setStyleSheet(u"font: 75 20pt \"Product Sans\";\n"
+"")
+        self.lblAboutTitle.setAlignment(Qt.AlignCenter)
+        self.label_2 = QLabel(AboutDialog)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(10, 60, 431, 20))
+        self.label_2.setAlignment(Qt.AlignCenter)
+        self.lblVersion = QLabel(AboutDialog)
+        self.lblVersion.setObjectName(u"lblVersion")
+        self.lblVersion.setGeometry(QRect(170, 80, 111, 22))
+        self.lblVersion.setAlignment(Qt.AlignCenter)
+        self.label = QLabel(AboutDialog)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(80, 100, 281, 20))
+        self.label.setAlignment(Qt.AlignCenter)
+        self.lblProject = QLabel(AboutDialog)
+        self.lblProject.setObjectName(u"lblProject")
+        self.lblProject.setGeometry(QRect(50, 120, 211, 41))
+        self.label_5 = QLabel(AboutDialog)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setGeometry(QRect(60, 160, 91, 151))
+        self.label_6 = QLabel(AboutDialog)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setGeometry(QRect(130, 310, 201, 41))
+        self.label_6.setTextFormat(Qt.RichText)
+        self.label_6.setAlignment(Qt.AlignCenter)
+        self.lblLogo = QLabel(AboutDialog)
+        self.lblLogo.setObjectName(u"lblLogo")
+        self.lblLogo.setGeometry(QRect(200, 50, 47, 13))
+
+        self.retranslateUi(AboutDialog)
+
+        QMetaObject.connectSlotsByName(AboutDialog)
+    # setupUi
+
+    def retranslateUi(self, AboutDialog):
+        AboutDialog.setWindowTitle(QCoreApplication.translate("AboutDialog", u"Dialog", None))
+        self.btnClose.setText(QCoreApplication.translate("AboutDialog", u"Close", None))
+        self.lblAboutTitle.setText(QCoreApplication.translate("AboutDialog", u"AW3NIDS", None))
+        self.label_2.setText(QCoreApplication.translate("AboutDialog", u"Advanced Windows Network Intrusion Detection System", None))
+        self.lblVersion.setText(QCoreApplication.translate("AboutDialog", u"AW3NIDS Version 1.0", None))
+        self.label.setText(QCoreApplication.translate("AboutDialog", u"Author: Destiny Awesome Acheowubia", None))
+        self.lblProject.setText(QCoreApplication.translate("AboutDialog", u"<html><head/><body><p>Diploma Project</p><p>Department of Computer Science, 2026</body></html>", None))
+        self.label_5.setText(QCoreApplication.translate("AboutDialog", u"<html><head/><body><p>Built With:</p><p>Python 3.14 </p><p>PySide6 </p><p>Scapy </p><p>Matplotlib</p><p>SQLite</p></body></html>", None))
+        self.label_6.setText(QCoreApplication.translate("AboutDialog", u"<html><head/><body><p>\u00a9 2026 Awesome Achese</p><p>All Rights Reserved</p></body></html>", None))
+        self.lblLogo.setText("")
+    # retranslateUi
+
