@@ -1,0 +1,3965 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>957</width>
+    <height>573</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>AW3NIDS</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* AW3NIDS - modern dark theme
+   Palette: bg #0F172A | surface #1E293B | border #334155 | text #E2E8F0
+            muted #94A3B8 | accent #0EA5E9 */
+
+* {
+    font-family: &quot;Segoe UI&quot;, &quot;Inter&quot;, &quot;Product Sans&quot;, &quot;Helvetica Neue&quot;, Arial, sans-serif;
+}
+
+QMainWindow, QWidget#centralwidget {
+    background-color: #0F172A;
+}
+
+QWidget {
+    color: #E2E8F0;
+}
+
+QLabel {
+    background: transparent;
+    color: #E2E8F0;
+}
+
+QToolTip {
+    background-color: #1E293B;
+    color: #E2E8F0;
+    border: 1px solid #334155;
+    padding: 4px 8px;
+}
+
+/* ---------- Containers ---------- */
+
+/* plain QFrames (page containers) are invisible; cards are opted in below */
+.QFrame {
+    background: transparent;
+    border: none;
+}
+
+QStackedWidget {
+    background: transparent;
+    border: none;
+}
+
+QScrollArea,
+QScrollArea &gt; QWidget &gt; QWidget {
+    background: transparent;
+    border: none;
+}
+
+#framePackets, #frameHosts, #frameStatus, #frameThreats,
+#frameTotalAlerts, #frameCRIITICAL, #frameHIGH, #frameMEDIUM,
+#frameTotalLogs, #frameWarnings, #frameErrors,
+#frameTotalPackets, #frameTotalThreats, #frameActiveHosts, #frameUptime,
+#frameReportsTotalAlerts, #frameHighAlerts, #frameMediumAlerts, #frameLowAlerts,
+#frameState, #frameGraph, #frameThreatActivity, #frameAttackBreakdown {
+    background-color: #1E293B;
+    border: 1px solid #334155;
+    border-radius: 10px;
+}
+
+#graphContainer {
+    background: transparent;
+}
+
+QGroupBox {
+    background-color: #1E293B;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding-top: 8px;
+    font-weight: 600;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    left: 14px;
+    padding: 0 6px;
+    color: #94A3B8;
+}
+
+/* ---------- Sidebar ---------- */
+
+#sidebarFrame {
+    background-color: #1E293B;
+    border: none;
+
+}
+
+#iblLogo {
+    font-size: 16pt;
+    font-weight: bold;
+    color: #38BDF8;
+    background: transparent;
+}
+
+#btnDashboard, #btnLiveCapture, #btnAlerts, #btnDatabase, #btnReports,
+#btnSimulator, #btnAnalytics, #btnLogs, #btnSettings {
+    background-color: transparent;
+    color: #CBD5E1;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 11pt;
+}
+
+#btnDashboard:hover, #btnLiveCapture:hover, #btnAlerts:hover, #btnDatabase:hover,
+#btnReports:hover, #btnSimulator:hover, #btnAnalytics:hover, #btnLogs:hover,
+#btnSettings:hover {
+    background-color: #334155;
+    color: #FFFFFF;
+}
+
+#btnDashboard:pressed, #btnLiveCapture:pressed, #btnAlerts:pressed, #btnDatabase:pressed,
+#btnReports:pressed, #btnSimulator:pressed, #btnAnalytics:pressed, #btnLogs:pressed,
+#btnSettings:pressed {
+    background-color: #0EA5E9;
+    color: #FFFFFF;
+}
+
+/* selected page: either make the button checkable, or set property active=true */
+#btnDashboard:checked, #btnLiveCapture:checked, #btnAlerts:checked, #btnDatabase:checked,
+#btnReports:checked, #btnSimulator:checked, #btnAnalytics:checked, #btnLogs:checked,
+#btnSettings:checked,
+#btnDashboard[active=&quot;true&quot;], #btnLiveCapture[active=&quot;true&quot;], #btnAlerts[active=&quot;true&quot;],
+#btnDatabase[active=&quot;true&quot;], #btnReports[active=&quot;true&quot;], #btnSimulator[active=&quot;true&quot;],
+#btnAnalytics[active=&quot;true&quot;], #btnLogs[active=&quot;true&quot;], #btnSettings[active=&quot;true&quot;] {
+    background-color: rgba(14, 165, 233, 0.18);
+    color: #38BDF8;
+    font-weight: 600;
+}
+
+/* ---------- Buttons ---------- */
+
+QPushButton {
+    background-color: #334155;
+    color: #F1F5F9;
+    border: 1px solid #475569;
+    border-radius: 6px;
+    padding: 6px 14px;
+}
+
+QPushButton:hover {
+    background-color: #3E4D66;
+    border-color: #0EA5E9;
+}
+
+QPushButton:pressed {
+    background-color: #0EA5E9;
+    border-color: #0EA5E9;
+    color: #FFFFFF;
+}
+
+QPushButton:disabled {
+    background-color: #1E293B;
+    color: #64748B;
+    border-color: #334155;
+}
+
+/* primary actions */
+#btnStartCapture, #btnRunSimulation, #btnGenerateReport, #btnSaveSettings, #btnBlockIP {
+    background-color: #0EA5E9;
+    border: 1px solid #0EA5E9;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+#btnStartCapture:hover, #btnRunSimulation:hover, #btnGenerateReport:hover,
+#btnSaveSettings:hover, #btnBlockIP:hover {
+    background-color: #38BDF8;
+    border-color: #38BDF8;
+}
+
+#btnStartCapture:pressed, #btnRunSimulation:pressed, #btnGenerateReport:pressed,
+#btnSaveSettings:pressed, #btnBlockIP:pressed {
+    background-color: #0284C7;
+    border-color: #0284C7;
+}
+
+#btnStartCapture:disabled, #btnRunSimulation:disabled, #btnGenerateReport:disabled,
+#btnSaveSettings:disabled, #btnBlockIP:disabled {
+    background-color: #1E293B;
+    border-color: #334155;
+    color: #64748B;
+}
+
+/* destructive actions */
+#btnStopCapture, #btnClearDatabase, #btnDeleteAlert, #btnClearLogs, #pushButton {
+    background-color: transparent;
+    border: 1px solid #7F1D1D;
+    color: #F87171;
+}
+
+#btnStopCapture:hover, #btnClearDatabase:hover, #btnDeleteAlert:hover,
+#btnClearLogs:hover, #pushButton:hover {
+    background-color: #EF4444;
+    border-color: #EF4444;
+    color: #FFFFFF;
+}
+
+#btnStopCapture:pressed, #btnClearDatabase:pressed, #btnDeleteAlert:pressed,
+#btnClearLogs:pressed, #pushButton:pressed {
+    background-color: #DC2626;
+    border-color: #DC2626;
+    color: #FFFFFF;
+}
+
+#btnStopCapture:disabled, #btnClearDatabase:disabled, #btnDeleteAlert:disabled,
+#btnClearLogs:disabled, #pushButton:disabled {
+    background-color: transparent;
+    border-color: #334155;
+    color: #64748B;
+}
+
+/* ---------- Inputs ---------- */
+
+QLineEdit, QTextEdit, QSpinBox, QDateEdit, QComboBox {
+    background-color: #0F172A;
+    color: #E2E8F0;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 5px 8px;
+    selection-background-color: #0EA5E9;
+    selection-color: #FFFFFF;
+}
+
+QLineEdit:hover, QTextEdit:hover, QSpinBox:hover, QDateEdit:hover, QComboBox:hover {
+    border-color: #475569;
+}
+
+QLineEdit:focus, QTextEdit:focus, QSpinBox:focus, QDateEdit:focus, QComboBox:focus {
+    border: 1px solid #0EA5E9;
+}
+
+QLineEdit:disabled, QSpinBox:disabled, QDateEdit:disabled, QComboBox:disabled {
+    color: #64748B;
+    background-color: #1E293B;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #1E293B;
+    color: #E2E8F0;
+    border: 1px solid #334155;
+    selection-background-color: #0EA5E9;
+    selection-color: #FFFFFF;
+    outline: none;
+}
+
+#txtSimulationLog {
+    background-color: #0B1220;
+    color: #A7F3D0;
+    font-family: &quot;Cascadia Mono&quot;, &quot;Consolas&quot;, &quot;Courier New&quot;, monospace;
+    font-size: 9pt;
+}
+
+QCheckBox {
+    spacing: 8px;
+    background: transparent;
+}
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #475569;
+    border-radius: 4px;
+    background-color: #0F172A;
+}
+
+QCheckBox::indicator:hover {
+    border-color: #0EA5E9;
+}
+
+QCheckBox::indicator:checked {
+    background-color: #0EA5E9;
+    border-color: #0EA5E9;
+}
+
+/* ---------- Tables ---------- */
+
+QTableWidget {
+    background-color: #1E293B;
+    alternate-background-color: #1A2438;
+    color: #E2E8F0;
+    gridline-color: #2B3A52;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    selection-background-color: rgba(14, 165, 233, 0.30);
+    selection-color: #FFFFFF;
+    outline: none;
+}
+
+QTableWidget::item {
+    padding: 4px 6px;
+    border: none;
+}
+
+QHeaderView {
+    background: transparent;
+}
+
+QHeaderView::section {
+    background-color: #162033;
+    color: #94A3B8;
+    padding: 6px 8px;
+    border: none;
+    border-bottom: 1px solid #334155;
+    border-right: 1px solid #2B3A52;
+    font-weight: 600;
+}
+
+QTableCornerButton::section {
+    background-color: #162033;
+    border: none;
+}
+
+/* ---------- Scrollbars ---------- */
+
+QScrollBar:vertical {
+    background: transparent;
+    width: 10px;
+    margin: 0;
+}
+
+QScrollBar::handle:vertical {
+    background: #475569;
+    border-radius: 5px;
+    min-height: 28px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #64748B;
+}
+
+QScrollBar:horizontal {
+    background: transparent;
+    height: 10px;
+    margin: 0;
+}
+
+QScrollBar::handle:horizontal {
+    background: #475569;
+    border-radius: 5px;
+    min-width: 28px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: #64748B;
+}
+
+QScrollBar::add-line, QScrollBar::sub-line {
+    width: 0;
+    height: 0;
+}
+
+QScrollBar::add-page, QScrollBar::sub-page {
+    background: none;
+}
+
+/* ---------- Menu / toolbar / status bar ---------- */
+
+QMenuBar {
+    background-color: #0F172A;
+    color: #CBD5E1;
+    border-bottom: 1px solid #1E293B;
+    padding: 2px;
+}
+
+QMenuBar::item {
+    background: transparent;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+QMenuBar::item:selected {
+    background-color: #1E293B;
+}
+
+QMenu {
+    background-color: #1E293B;
+    color: #E2E8F0;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+QMenu::item {
+    padding: 6px 24px;
+    border-radius: 6px;
+}
+
+QMenu::item:selected {
+    background-color: #0EA5E9;
+    color: #FFFFFF;
+}
+
+QMenu::separator {
+    height: 1px;
+    background: #334155;
+    margin: 4px 6px;
+}
+
+QToolBar {
+    background-color: #0F172A;
+    border: none;
+    border-bottom: 1px solid #1E293B;
+    spacing: 6px;
+    padding: 4px;
+}
+
+QToolButton {
+    background: transparent;
+    color: #E2E8F0;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 5px 10px;
+}
+
+QToolButton:hover {
+    background-color: #1E293B;
+    border-color: #334155;
+}
+
+QToolButton:pressed {
+    background-color: #0EA5E9;
+    color: #FFFFFF;
+}
+
+QStatusBar {
+    background-color: #0F172A;
+    color: #94A3B8;
+    border-top: 1px solid #1E293B;
+}
+
+/* ---------- Typography ---------- */
+
+/* page titles */
+#AlertsPageTitle, #LogsPageTitle, #AnalyitcsPageTitle, #lblReportsTitle,
+#lblSimulatorTitle, #lblDatabaseTitle {
+    font-size: 16pt;
+    font-weight: bold;
+    color: #F8FAFC;
+}
+
+/* subtitles and small captions */
+#label_2, #lblReportsSubtitle,
+#lblStatusTitle, #lblInterfaceTitle {
+    color: #94A3B8;
+}
+
+/* section headers */
+#lblLivePacketsHeader, #lblRecentAlerts, #lblIPResponse, #lblNetworkTraffic,
+#lblLivePacketTable, #label_15, #label_16, #label_17, #label_18 {
+    font-size: 9pt;
+    font-weight: 600;
+    color: #E2E8F0;
+}
+
+/* stat card titles */
+#lblPacketTitle, #lblHostTitle, #lblNetworkStatusTitle, #lblThreatTitle,
+#lblTotalAlertsTitle, #lblTotalAlertsTitle_2, #lblMediumTitle, #lblHighTitle,
+#lblCriticalTitle, #lblHighTitle_2, #lblCriticalTitle_2,
+#label_4, #label_6, #label_12, #label_13,
+#lblReportTotalAlertsTitle, #lblReportHighAlertsTitle,
+#lblReportMediumAlertsTitle, #lblReportLowAlertsTitle {
+    font-size: 8pt;
+    color: #94A3B8;
+}
+
+/* stat card values */
+#lblPacketCount, #lblHostCount, #lblNetworkStatus, #lblThreatCount,
+#lblTotalAlerts, #lblMediumAlerts, #lblHighAlerts, #lblCriticalAlerts,
+#lblTotalLogs, #lblWarningLogs, #lblErrorLogs,
+#lblTotalPackets, #lblTotalThreats, #lblActiveHosts, #lblUptime,
+#label_22, #lblReportHighAlerts_2, #lblReportMediumAlerts, #lblReportLowAlerts,
+#lblPortScanCount, #lblSynFloodCount, #lblIcmpFloodCount, #lblArpSpoofCount {
+    font-size: 10pt;
+    font-weight: bold;
+    color: #F8FAFC;
+}
+
+/* severity colours (matched by label text, not by the frame names) */
+#lblMediumTitle, #lblMediumAlerts, #lblWarningLogs, #lblReportMediumAlerts {
+    color: #FBBF24;
+}
+
+#lblHighTitle, #lblHighAlerts, #lblReportHighAlerts_2 {
+    color: #FB923C;
+}
+
+#lblCriticalTitle, #lblCriticalAlerts, #lblErrorLogs, #lblThreatCount {
+    color: #F87171;
+}
+
+#lblReportLowAlerts {
+    color: #4ADE80;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>230</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>230</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QFrame" name="sidebarFrame">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>230</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>230</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="iblLogo">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>221</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>AW3NIDS</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QWidget" name="verticalLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>161</width>
+          <height>391</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="NavSidebar">
+         <item>
+          <widget class="QPushButton" name="btnDashboard">
+           <property name="text">
+            <string>Dashboard</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnLiveCapture">
+           <property name="text">
+            <string>Live Capture</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnAlerts">
+           <property name="text">
+            <string>Alerts</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnDatabase">
+           <property name="text">
+            <string>Database</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnReports">
+           <property name="text">
+            <string>Reports</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnSimulator">
+           <property name="text">
+            <string>Attack Simulator</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnAnalytics">
+           <property name="text">
+            <string>Analytics</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnLogs">
+           <property name="text">
+            <string>Logs</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnSettings">
+           <property name="text">
+            <string>Settings</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>0</y>
+      <width>721</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="pageDashboard">
+     <widget class="QWidget" name="gridLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>341</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QFrame" name="framePackets">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+         <widget class="QLabel" name="lblPacketTitle">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>0</y>
+            <width>91</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Packets Captured</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lblPacketCount">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>81</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>341</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QFrame" name="frameHosts">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+         <widget class="QLabel" name="lblHostTitle">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>0</y>
+            <width>91</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Active Hosts</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lblHostCount">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>71</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>10</y>
+        <width>331</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="0">
+        <widget class="QFrame" name="frameStatus">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+         <widget class="QLabel" name="lblNetworkStatusTitle">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>0</y>
+            <width>91</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Network Status</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lblNetworkStatus">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>141</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Offline</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget_29">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>60</y>
+        <width>331</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_30">
+       <item row="1" column="0">
+        <widget class="QFrame" name="frameThreats">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+         <widget class="QLabel" name="lblThreatTitle">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>0</y>
+            <width>91</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Threats Detected</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lblThreatCount">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>71</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="lblNetworkTraffic">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>251</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Network Traffic Graph</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frameGraph">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>701</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Sunken</enum>
+      </property>
+      <widget class="QWidget" name="graphContainer" native="true">
+       <property name="geometry">
+        <rect>
+         <x>-10</x>
+         <y>-10</y>
+         <width>721</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_10"/>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_7">
+      <property name="geometry">
+       <rect>
+        <x>9</x>
+        <y>259</y>
+        <width>701</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayoutTables">
+       <item>
+        <widget class="QFrame" name="frame">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLabel" name="lblLivePacketsHeader">
+          <property name="geometry">
+           <rect>
+            <x>130</x>
+            <y>0</y>
+            <width>101</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Live Packets</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QTableWidget" name="tableLivePackets">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>351</width>
+            <height>131</height>
+           </rect>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Sunken</enum>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustIgnored</enum>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>false</bool>
+          </property>
+          <column>
+           <property name="text">
+            <string>Time</string>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>8</pointsize>
+            </font>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Source IP</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Destination IP</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Protocol</string>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>8</pointsize>
+            </font>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Status</string>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>8</pointsize>
+            </font>
+           </property>
+          </column>
+         </widget>
+         <widget class="QTableWidget" name="tableRecentAlerts">
+          <property name="geometry">
+           <rect>
+            <x>350</x>
+            <y>20</y>
+            <width>351</width>
+            <height>131</height>
+           </rect>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustIgnored</enum>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+          <property name="columnCount">
+           <number>6</number>
+          </property>
+          <column>
+           <property name="text">
+            <string>Time</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Threat</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Source IP</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Severity</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Details</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Length</string>
+           </property>
+          </column>
+         </widget>
+         <widget class="QLabel" name="lblRecentAlerts">
+          <property name="geometry">
+           <rect>
+            <x>480</x>
+            <y>0</y>
+            <width>101</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Recent Alerts</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QFrame" name="frameDashboard">
+      <property name="geometry">
+       <rect>
+        <x>9</x>
+        <y>9</y>
+        <width>701</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Sunken</enum>
+      </property>
+     </widget>
+     <zorder>frameDashboard</zorder>
+     <zorder>gridLayoutWidget_2</zorder>
+     <zorder>gridLayoutWidget_3</zorder>
+     <zorder>gridLayoutWidget_4</zorder>
+     <zorder>gridLayoutWidget_29</zorder>
+     <zorder>lblNetworkTraffic</zorder>
+     <zorder>frameGraph</zorder>
+     <zorder>horizontalLayoutWidget_7</zorder>
+    </widget>
+    <widget class="QWidget" name="pageCapture">
+     <widget class="QWidget" name="verticalLayoutWidget_9">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>701</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayoutLiveCapture">
+       <item>
+        <widget class="QFrame" name="frameCapture">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+         <widget class="QComboBox" name="cmbInterface">
+          <property name="geometry">
+           <rect>
+            <x>70</x>
+            <y>10</y>
+            <width>441</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="currentText">
+           <string/>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lblInterface">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>61</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Interface</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btnRefreshInterfaces">
+          <property name="geometry">
+           <rect>
+            <x>530</x>
+            <y>10</y>
+            <width>75</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Refresh</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lblLivePacketTable">
+          <property name="geometry">
+           <rect>
+            <x>150</x>
+            <y>70</y>
+            <width>121</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Live Packet Table</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QTableWidget" name="tableLivePackets_2">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>90</y>
+            <width>461</width>
+            <height>301</height>
+           </rect>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="columnCount">
+           <number>6</number>
+          </property>
+          <column>
+           <property name="text">
+            <string>Time</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Source </string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Destination </string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Protocol</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Length</string>
+           </property>
+          </column>
+          <column/>
+         </widget>
+         <widget class="QGroupBox" name="GroupCaptureDetails_2">
+          <property name="geometry">
+           <rect>
+            <x>580</x>
+            <y>90</y>
+            <width>111</width>
+            <height>291</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string>Packet Details</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="lblDetailTime">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="lblDetailSrc">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="lblDetailDst">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="lblDetailProtocol">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="lblDetailSrcPort">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="lblDetailTTL">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="lblDetailLength">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="lblDetailFlags">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="lblDetailDstPort">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QGroupBox" name="GroupCaptureDetails">
+          <property name="geometry">
+           <rect>
+            <x>480</x>
+            <y>100</y>
+            <width>101</width>
+            <height>281</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QFormLayout" name="formLayout_4">
+           <item row="0" column="0">
+            <widget class="QLabel" name="time">
+             <property name="text">
+              <string>Time: </string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="sourceip">
+             <property name="text">
+              <string>Source IP:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="destination">
+             <property name="text">
+              <string>Desination IP:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="protocol">
+             <property name="text">
+              <string>Protocol: </string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="sourceports">
+             <property name="text">
+              <string>Source Ports: </string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="ttl">
+             <property name="text">
+              <string>TTL: </string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="length">
+             <property name="text">
+              <string>Length:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="flags">
+             <property name="text">
+              <string>TCP Flags: </string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="destinationport">
+             <property name="text">
+              <string>Destination Port:</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget_4">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>40</y>
+            <width>291</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayoutCAptureButtons">
+           <item>
+            <widget class="QPushButton" name="btnStartCapture">
+             <property name="text">
+              <string>Start Capture</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnStopCapture">
+             <property name="text">
+              <string>Stop Capture</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="pageAlerts">
+     <widget class="QWidget" name="verticalLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>701</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayoutAlerts">
+       <item>
+        <widget class="QFrame" name="frameAlerts">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+         <widget class="QWidget" name="layoutWidget_3">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>40</y>
+            <width>621</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayoutAlerts">
+           <item>
+            <widget class="QFrame" name="frameTotalAlerts">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <widget class="QLabel" name="lblTotalAlerts">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>20</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="lblTotalAlertsTitle">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Total Alerts</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frameCRIITICAL">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <widget class="QLabel" name="lblMediumTitle">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>MEDIUM</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="lblMediumAlerts">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>20</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frameHIGH">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <widget class="QLabel" name="lblHighAlerts">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>20</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="lblHighTitle">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>HIGH </string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frameMEDIUM">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <widget class="QLabel" name="lblCriticalTitle">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>CRITICAL</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="lblCriticalAlerts">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>20</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget_11">
+          <property name="geometry">
+           <rect>
+            <x>180</x>
+            <y>370</y>
+            <width>341</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_9">
+           <item>
+            <widget class="QPushButton" name="pushButton_3">
+             <property name="text">
+              <string>View Details</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_2">
+             <property name="text">
+              <string>Export</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton">
+             <property name="text">
+              <string>Clear Alerts</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget_9">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>90</y>
+            <width>639</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <item>
+              <widget class="QLabel" name="lblSearchSeverity">
+               <property name="text">
+                <string>Search</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="txtSearchAlerts">
+               <property name="placeholderText">
+                <string>search alerts...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QComboBox" name="comboSeverity">
+             <item>
+              <property name="text">
+               <string>All Severities</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Critical</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>High</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Medium</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Low</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="cmbAlertType">
+             <item>
+              <property name="text">
+               <string>All Types</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Port Scan</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>SYN Flood</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Suspicious Traffic</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Other</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnClearFilters">
+             <property name="text">
+              <string>Clear Filters</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QTableWidget" name="tableAlerts">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>120</y>
+            <width>681</width>
+            <height>111</height>
+           </rect>
+          </property>
+          <column>
+           <property name="text">
+            <string>Time</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Sevcerity</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Alert Type</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Source IP</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Destination IP</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Protocol</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Description</string>
+           </property>
+          </column>
+         </widget>
+         <widget class="QLabel" name="lblIPResponse">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>230</y>
+            <width>639</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string> Alert Response</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QTableWidget" name="tableBlockedIPs">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>280</y>
+            <width>681</width>
+            <height>81</height>
+           </rect>
+          </property>
+          <column>
+           <property name="text">
+            <string>IP Address</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Blocked At</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Reason</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Status</string>
+           </property>
+          </column>
+         </widget>
+         <widget class="QWidget" name="layoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>250</y>
+            <width>639</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="widgetIPControls">
+           <item>
+            <widget class="QLabel" name="lblIPAddress">
+             <property name="text">
+              <string>IP Address:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="txtIPAddress">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="placeholderText">
+              <string>Enter IP Address...</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnBlockIP">
+             <property name="text">
+              <string>Block IP</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnUnblockIP">
+             <property name="text">
+              <string>Unblock IP</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QLabel" name="AlertsPageTitle">
+          <property name="geometry">
+           <rect>
+            <x>270</x>
+            <y>0</y>
+            <width>131</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Alerts</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="pageLogs">
+     <widget class="QWidget" name="verticalLayoutWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>701</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="LayoutLogs">
+       <item>
+        <widget class="QFrame" name="frame_2">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLabel" name="label_2">
+          <property name="geometry">
+           <rect>
+            <x>230</x>
+            <y>30</y>
+            <width>251</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>View and investigate AW3NIDS application events</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="LogsPageTitle">
+          <property name="geometry">
+           <rect>
+            <x>280</x>
+            <y>0</y>
+            <width>141</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Logs</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QWidget" name="layoutWidget_4">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>50</y>
+            <width>621</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayoutAlerts_2">
+           <item>
+            <widget class="QFrame" name="frameTotalLogs">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <widget class="QLabel" name="lblTotalLogs">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>20</y>
+                <width>201</width>
+                <height>21</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="lblTotalAlertsTitle_2">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>201</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Total Logs</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frameWarnings">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <widget class="QLabel" name="lblWarningLogs">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>20</y>
+                <width>201</width>
+                <height>21</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="lblHighTitle_2">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>201</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Warnings </string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frameErrors">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <widget class="QLabel" name="lblCriticalTitle_2">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>201</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Errors</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="lblErrorLogs">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>20</y>
+                <width>201</width>
+                <height>21</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QLabel" name="label_17">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>90</y>
+            <width>47</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Filters</string>
+          </property>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget_16">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>110</y>
+            <width>491</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <item>
+            <widget class="QLineEdit" name="txtSearchLogs">
+             <property name="placeholderText">
+              <string>search messages...</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="cmbLogLevel">
+             <item>
+              <property name="text">
+               <string>All Levels</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>INFO</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>WARNING</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ERROR</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>CRITICAL</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QLabel" name="label_18">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>140</y>
+            <width>91</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Event history</string>
+          </property>
+         </widget>
+         <widget class="QTableWidget" name="tableLogs">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>160</y>
+            <width>631</width>
+            <height>181</height>
+           </rect>
+          </property>
+          <column>
+           <property name="text">
+            <string>Time</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Level</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Category</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Message</string>
+           </property>
+          </column>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget_17">
+          <property name="geometry">
+           <rect>
+            <x>500</x>
+            <y>350</y>
+            <width>181</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_12">
+           <item>
+            <widget class="QPushButton" name="btnClearLogs">
+             <property name="text">
+              <string>Clear Logs</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnExportLogs">
+             <property name="text">
+              <string>Export Logs</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="pageAnalytics">
+     <widget class="QWidget" name="verticalLayoutWidget_12">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>701</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="LayoutAnalytics">
+       <item>
+        <widget class="QFrame" name="frameAnalyticsContent">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+         <widget class="QLabel" name="label_15">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>90</y>
+            <width>101</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Threat Activity</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_16">
+          <property name="geometry">
+           <rect>
+            <x>360</x>
+            <y>90</y>
+            <width>101</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Attack Breakdown</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QWidget" name="layoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>110</y>
+            <width>661</width>
+            <height>121</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="ThreatsAnalyticsLay">
+           <item>
+            <widget class="QFrame" name="frameThreatActivity">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <widget class="QWidget" name="verticalLayoutWidget">
+              <property name="geometry">
+               <rect>
+                <x>-10</x>
+                <y>0</y>
+                <width>351</width>
+                <height>121</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="LayoutGraphAnalytics"/>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frameAttackBreakdown">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <widget class="QWidget" name="gridLayoutWidget">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>10</y>
+                <width>291</width>
+                <height>101</height>
+               </rect>
+              </property>
+              <layout class="QGridLayout" name="gridLayoutStats">
+               <item row="0" column="0">
+                <widget class="QLabel" name="lblPortScan">
+                 <property name="text">
+                  <string>Port Scan</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLabel" name="lblSynFloodCount">
+                 <property name="text">
+                  <string>0</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLabel" name="lblPortScanCount">
+                 <property name="text">
+                  <string>0</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="lblIcmpFloodCount">
+                 <property name="text">
+                  <string>0</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="lblSynFlood">
+                 <property name="text">
+                  <string>SYN Flood</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="lblIcmpFlood">
+                 <property name="text">
+                  <string>ICMP Flood</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="lblArpSpoof">
+                 <property name="text">
+                  <string>ARP Spoof</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="lblArpSpoofCount">
+                 <property name="text">
+                  <string>0</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="layoutWidget_2">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>40</y>
+            <width>621</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="LayoutAnalyticsStats">
+           <item>
+            <widget class="QFrame" name="frameTotalPackets">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <widget class="QLabel" name="lblTotalPackets">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>20</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_4">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Total Packets</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frameTotalThreats">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <widget class="QLabel" name="lblTotalThreats">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>20</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_6">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Total Threats</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frameActiveHosts">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <widget class="QLabel" name="lblActiveHosts">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>20</y>
+                <width>141</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_12">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Active Hosts</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frameUptime">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <widget class="QLabel" name="lblUptime">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>20</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_13">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Uptime</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QLabel" name="AnalyitcsPageTitle">
+          <property name="geometry">
+           <rect>
+            <x>260</x>
+            <y>0</y>
+            <width>171</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Analytics</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="pageReports">
+     <widget class="QWidget" name="verticalLayoutWidget_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>701</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayoutReports">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QFrame" name="frameReports">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Sunken</enum>
+           </property>
+           <widget class="QLabel" name="lblReportsTitle">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>697</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Reports</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+           <widget class="QWidget" name="horizontalLayoutWidget_3">
+            <property name="geometry">
+             <rect>
+              <x>16</x>
+              <y>60</y>
+              <width>661</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <layout class="QHBoxLayout" name="layoutGenerateReport">
+             <item>
+              <widget class="QLabel" name="lblReportType">
+               <property name="text">
+                <string>Report Type:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="cmbReportType">
+               <item>
+                <property name="text">
+                 <string>All Alerts</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>SYN Flood</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Port Scan</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Other Threats</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblDateFrom">
+               <property name="text">
+                <string>Date From:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDateEdit" name="dateReportFrom">
+               <property name="calendarPopup">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblDateTo">
+               <property name="text">
+                <string>Date To:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDateEdit" name="dateReportTo"/>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnGenerateReport">
+               <property name="text">
+                <string>Generate Report</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QLabel" name="lblReportsSubtitle">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>30</y>
+              <width>697</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Generate and review intrusion detection reports</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+           <widget class="QWidget" name="horizontalLayoutWidget_13">
+            <property name="geometry">
+             <rect>
+              <x>50</x>
+              <y>110</y>
+              <width>591</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <layout class="QHBoxLayout" name="layoutReportCards">
+             <item>
+              <widget class="QFrame" name="frameReportsTotalAlerts">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Sunken</enum>
+               </property>
+               <widget class="QLabel" name="lblReportTotalAlertsTitle">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>-1</y>
+                  <width>141</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Total Alerts</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+               <widget class="QLabel" name="label_22">
+                <property name="geometry">
+                 <rect>
+                  <x>-4</x>
+                  <y>20</y>
+                  <width>151</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frameHighAlerts">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Sunken</enum>
+               </property>
+               <widget class="QLabel" name="lblReportHighAlertsTitle">
+                <property name="geometry">
+                 <rect>
+                  <x>-4</x>
+                  <y>0</y>
+                  <width>151</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>High Severity</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+               <widget class="QLabel" name="lblReportHighAlerts_2">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>20</y>
+                  <width>141</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frameMediumAlerts">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Sunken</enum>
+               </property>
+               <widget class="QLabel" name="lblReportMediumAlertsTitle">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>141</width>
+                  <height>20</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Medium Severity</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+               <widget class="QLabel" name="lblReportMediumAlerts">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>20</y>
+                  <width>141</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frameLowAlerts">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Sunken</enum>
+               </property>
+               <widget class="QLabel" name="lblReportLowAlertsTitle">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>141</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Low Severity</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+               <widget class="QLabel" name="lblReportLowAlerts">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>20</y>
+                  <width>141</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QTableWidget" name="tableReports">
+            <property name="geometry">
+             <rect>
+              <x>90</x>
+              <y>160</y>
+              <width>511</width>
+              <height>181</height>
+             </rect>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Sunken</enum>
+            </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <column>
+             <property name="text">
+              <string>Time</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Threat</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Source IP</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Severity</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Status</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
+             </property>
+            </column>
+           </widget>
+           <widget class="QWidget" name="horizontalLayoutWidget_14">
+            <property name="geometry">
+             <rect>
+              <x>190</x>
+              <y>350</y>
+              <width>321</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <layout class="QHBoxLayout" name="layourRepotsBtns">
+             <item>
+              <widget class="QPushButton" name="btnExportCSV_2">
+               <property name="text">
+                <string>Export CSV</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnExportPDF">
+               <property name="text">
+                <string>Export PDF</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnResetReport">
+               <property name="text">
+                <string>Reset</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="pageSettings">
+     <layout class="QVBoxLayout" name="verticalLayout_14">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayoutSettings">
+        <item>
+         <widget class="QScrollArea" name="scrollArea">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>701</width>
+             <height>401</height>
+            </rect>
+           </property>
+           <widget class="QFrame" name="frameSettings">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>701</width>
+              <height>399</height>
+             </rect>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>120</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QGroupBox" name="groupDetection">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>130</y>
+               <width>211</width>
+               <height>201</height>
+              </rect>
+             </property>
+             <property name="title">
+              <string>Detection Settings</string>
+             </property>
+             <widget class="QWidget" name="formLayoutWidget_2">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>20</y>
+                <width>181</width>
+                <height>166</height>
+               </rect>
+              </property>
+              <layout class="QFormLayout" name="formLayout_3">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_7">
+                 <property name="text">
+                  <string>Port Scan Threshold </string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_8">
+                 <property name="text">
+                  <string>SYN Flood Threshold</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_9">
+                 <property name="text">
+                  <string>Port Scan Window </string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="label_10">
+                 <property name="text">
+                  <string>SYN Window</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="label_11">
+                 <property name="text">
+                  <string>Alert Cooldown</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QSpinBox" name="spinPortScanWindow">
+                 <property name="value">
+                  <number>5</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QSpinBox" name="spinSynWindow">
+                 <property name="value">
+                  <number>5</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QSpinBox" name="spinCooldown">
+                 <property name="value">
+                  <number>30</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QSpinBox" name="spinSynThreshold">
+                 <property name="value">
+                  <number>20</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QSpinBox" name="spinPortScanThreshold">
+                 <property name="value">
+                  <number>20</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+            <widget class="QGroupBox" name="groupAppearance">
+             <property name="geometry">
+              <rect>
+               <x>450</x>
+               <y>10</y>
+               <width>241</width>
+               <height>101</height>
+              </rect>
+             </property>
+             <property name="title">
+              <string>Appearance</string>
+             </property>
+             <widget class="QWidget" name="formLayoutWidget_3">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>20</y>
+                <width>211</width>
+                <height>70</height>
+               </rect>
+              </property>
+              <layout class="QFormLayout" name="formLayout_2">
+               <item row="2" column="1">
+                <widget class="QComboBox" name="cmbAccent">
+                 <item>
+                  <property name="text">
+                   <string>Blue</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="cmbTheme">
+                 <item>
+                  <property name="text">
+                   <string>Light</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Dark</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_3">
+                 <property name="text">
+                  <string>Theme</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_14">
+                 <property name="text">
+                  <string>Accent Color</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+            <widget class="QGroupBox" name="groupBox_3">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>10</y>
+               <width>431</width>
+               <height>121</height>
+              </rect>
+             </property>
+             <property name="title">
+              <string>General Settings</string>
+             </property>
+             <widget class="QWidget" name="formLayoutWidget">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>50</y>
+                <width>165</width>
+                <height>64</height>
+               </rect>
+              </property>
+              <layout class="QFormLayout" name="formLayoutGenSettings">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string>Packet History</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QSpinBox" name="spinPacketHistory">
+                 <property name="minimum">
+                  <number>10</number>
+                 </property>
+                 <property name="maximum">
+                  <number>10000</number>
+                 </property>
+                 <property name="value">
+                  <number>500</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="lblRefreshRate">
+                 <property name="text">
+                  <string>Refresh Rate (ms)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QSpinBox" name="spinRefreshRate">
+                 <property name="minimum">
+                  <number>100</number>
+                 </property>
+                 <property name="maximum">
+                  <number>10000</number>
+                 </property>
+                 <property name="value">
+                  <number>100</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QComboBox" name="cmbSetInterface">
+              <property name="geometry">
+               <rect>
+                <x>131</x>
+                <y>20</y>
+                <width>281</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="lblInterfaces">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>20</y>
+                <width>105</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Monitoring Interface: </string>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="horizontalLayoutWidget_8">
+             <property name="geometry">
+              <rect>
+               <x>120</x>
+               <y>350</y>
+               <width>431</width>
+               <height>41</height>
+              </rect>
+             </property>
+             <layout class="QHBoxLayout" name="ButtonsLayout">
+              <item>
+               <widget class="QPushButton" name="btnSaveSettings">
+                <property name="text">
+                 <string>Save Settings</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnResetSettings">
+                <property name="text">
+                 <string>Reset Settings</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QGroupBox" name="groupNotifications">
+             <property name="geometry">
+              <rect>
+               <x>230</x>
+               <y>140</y>
+               <width>211</width>
+               <height>151</height>
+              </rect>
+             </property>
+             <property name="title">
+              <string>Notifications</string>
+             </property>
+             <widget class="QWidget" name="verticalLayoutWidget_8">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>20</y>
+                <width>181</width>
+                <height>121</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="LayoutSetNoti">
+               <item>
+                <widget class="QCheckBox" name="chkSaveDatabase">
+                 <property name="text">
+                  <string>Save Alerts to Database</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="chkWriteLog">
+                 <property name="text">
+                  <string>Write Log File</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="chkPopup">
+                 <property name="text">
+                  <string>Popup Notification</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="chkPlaySound">
+                 <property name="text">
+                  <string>Play Sounds</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="pageSimulator">
+     <widget class="QWidget" name="verticalLayoutWidget_10">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>701</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayoutSimulator">
+       <item>
+        <widget class="QFrame" name="frameSimulator">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+         <widget class="QPushButton" name="btnRunSimulation">
+          <property name="geometry">
+           <rect>
+            <x>500</x>
+            <y>80</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Start Simulation</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lblSimulatorTitle">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>681</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Segoe UI,Inter,Product Sans,Helvetica Neue,Arial,sans-serif</family>
+            <pointsize>16</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Attack Simulator</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget_10">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>70</y>
+            <width>271</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_10">
+           <item>
+            <widget class="QLabel" name="lblAttactTypeSim">
+             <property name="text">
+              <string>Attack Type:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="cmbAttackType"/>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget_12">
+          <property name="geometry">
+           <rect>
+            <x>320</x>
+            <y>70</y>
+            <width>141</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_11">
+           <item>
+            <widget class="QLabel" name="lblPacketsTitle">
+             <property name="text">
+              <string>Packets:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spinSimPacketCount">
+             <property name="specialValueText">
+              <string>100</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget_15">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>130</y>
+            <width>641</width>
+            <height>231</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_15">
+           <item>
+            <widget class="QTextEdit" name="txtSimulationLog">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnClearLogSim">
+             <property name="text">
+              <string>Clear Log</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="pageDatabase">
+     <widget class="QWidget" name="verticalLayoutWidget_7">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>701</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayoutDatabase">
+       <item>
+        <widget class="QFrame" name="frameDatabase">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+         <widget class="QLabel" name="lblDatabaseTitle">
+          <property name="geometry">
+           <rect>
+            <x>240</x>
+            <y>10</y>
+            <width>191</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Segoe UI,Inter,Product Sans,Helvetica Neue,Arial,sans-serif</family>
+            <pointsize>16</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Database Viewer</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget_2">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>40</y>
+            <width>671</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Search:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="txtSearch">
+             <property name="placeholderText">
+              <string>Search by ip Address...</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnSearch">
+             <property name="text">
+              <string>Search</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QTableWidget" name="tableDatabase">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>121</y>
+            <width>681</width>
+            <height>231</height>
+           </rect>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <property name="columnCount">
+           <number>12</number>
+          </property>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>Time</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Threat</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Source IP</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Severity</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Status</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Details</string>
+           </property>
+          </column>
+          <column/>
+          <column/>
+          <column/>
+          <column/>
+          <column/>
+          <column/>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget_5">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>360</y>
+            <width>621</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <item>
+            <widget class="QPushButton" name="btnDeleteAlert">
+             <property name="text">
+              <string>Delete Selected</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnClearDatabase">
+             <property name="text">
+              <string>Clear Database</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnExportCSV">
+             <property name="text">
+              <string>Export CSV</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnRefreshDatabase">
+             <property name="text">
+              <string>Refresh</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget_6">
+          <property name="geometry">
+           <rect>
+            <x>50</x>
+            <y>80</y>
+            <width>621</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <widget class="QLabel" name="lblThreatDatabaseSel">
+               <property name="text">
+                <string>Threat:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="cmbThreat">
+               <item>
+                <property name="text">
+                 <string>All</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Port Scan</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>SYN Flood</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>ICMP Flood</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>ARP Spoof</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblSeveritySel">
+               <property name="text">
+                <string>Severity:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="cmbSeverity">
+               <item>
+                <property name="text">
+                 <string>All</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Low</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Medium</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>High</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Critical</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>430</y>
+      <width>951</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayoutState">
+     <item>
+      <widget class="QFrame" name="frameState">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="lblStatusTitle">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>0</y>
+          <width>51</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Status:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lblStatusDetail">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>0</y>
+          <width>101</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Offline</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lblInterfaceDetail">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>20</y>
+          <width>291</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>None</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lblInterfaceTitle">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>20</y>
+          <width>51</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Interface:</string>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>957</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuScan">
+    <property name="title">
+     <string>Scan</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuReports">
+    <property name="title">
+     <string>Reports</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuScan"/>
+   <addaction name="menuReports"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionStartMonitoring"/>
+   <addaction name="actionStopMonitoring"/>
+   <addaction name="actionClearAlerts"/>
+   <addaction name="actionExportReport"/>
+  </widget>
+  <action name="actionStartMonitoring">
+   <property name="text">
+    <string>Start Monitoring</string>
+   </property>
+  </action>
+  <action name="actionStopMonitoring">
+   <property name="text">
+    <string>Stop Monitoring</string>
+   </property>
+  </action>
+  <action name="actionClearAlerts">
+   <property name="text">
+    <string>Clear Table</string>
+   </property>
+  </action>
+  <action name="actionExportReport">
+   <property name="text">
+    <string>Export Report</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About AW3NIDS</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

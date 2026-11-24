@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>957</width>
+    <width>968</width>
     <height>546</height>
    </rect>
   </property>
@@ -62,13 +62,13 @@
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <widget class="QLabel" name="iblLogo">
+       <widget class="QLabel" name="iblAppLogo">
         <property name="geometry">
          <rect>
           <x>0</x>
           <y>0</y>
           <width>231</width>
-          <height>41</height>
+          <height>51</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -80,6 +80,9 @@ color: white;</string>
         <property name="text">
          <string>AW3NIDS</string>
         </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
@@ -88,9 +91,9 @@ color: white;</string>
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>40</y>
+          <y>52</y>
           <width>171</width>
-          <height>374</height>
+          <height>361</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="NavSidebar">
@@ -173,58 +176,6 @@ QPushButton:pressed{
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="btnDatabase">
-           <property name="styleSheet">
-            <string notr="true">QPushButton{
-	font: 8pt &quot;Product Sans&quot;;
-	background_color: #334155; 
-	color: white;
-	border: none;
-	padding:9px;
-	text-align: left;
-	font-size: 11pt;
-}
-
-QPushButton:hover{
-	background-color:#475569;
-}
-
-QPushButton:pressed{
-	background-color: #0EA5E9;
-}</string>
-           </property>
-           <property name="text">
-            <string>Database</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnReports">
-           <property name="styleSheet">
-            <string notr="true">QPushButton{
-	font: 8pt &quot;Product Sans&quot;;
-	background_color: #334155; 
-	color: white;
-	border: none;
-	padding:9px;
-	text-align: left;
-	font-size: 11pt;
-}
-
-QPushButton:hover{
-	background-color:#475569;
-}
-
-QPushButton:pressed{
-	background-color: #0EA5E9;
-}</string>
-           </property>
-           <property name="text">
-            <string>Reports</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QPushButton" name="btnSimulator">
            <property name="styleSheet">
             <string notr="true">QPushButton{
@@ -273,6 +224,58 @@ QPushButton:pressed{
            </property>
            <property name="text">
             <string>Analytics</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnDatabase">
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+	font: 8pt &quot;Product Sans&quot;;
+	background_color: #334155; 
+	color: white;
+	border: none;
+	padding:9px;
+	text-align: left;
+	font-size: 11pt;
+}
+
+QPushButton:hover{
+	background-color:#475569;
+}
+
+QPushButton:pressed{
+	background-color: #0EA5E9;
+}</string>
+           </property>
+           <property name="text">
+            <string>Database</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnReports">
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+	font: 8pt &quot;Product Sans&quot;;
+	background_color: #334155; 
+	color: white;
+	border: none;
+	padding:9px;
+	text-align: left;
+	font-size: 11pt;
+}
+
+QPushButton:hover{
+	background-color:#475569;
+}
+
+QPushButton:pressed{
+	background-color: #0EA5E9;
+}</string>
+           </property>
+           <property name="text">
+            <string>Reports</string>
            </property>
           </widget>
          </item>
@@ -822,8 +825,13 @@ QPushButton:pressed{
            </rect>
           </property>
           <property name="currentText">
-           <string/>
+           <string>None</string>
           </property>
+          <item>
+           <property name="text">
+            <string>None</string>
+           </property>
+          </item>
          </widget>
          <widget class="QLabel" name="lblInterface">
           <property name="geometry">
@@ -854,7 +862,7 @@ QPushButton:pressed{
          <widget class="QLabel" name="lblLivePacketTable">
           <property name="geometry">
            <rect>
-            <x>150</x>
+            <x>10</x>
             <y>70</y>
             <width>121</width>
             <height>20</height>
@@ -872,7 +880,7 @@ QPushButton:pressed{
            <rect>
             <x>10</x>
             <y>90</y>
-            <width>461</width>
+            <width>471</width>
             <height>301</height>
            </rect>
           </property>
@@ -915,9 +923,9 @@ QPushButton:pressed{
          <widget class="QGroupBox" name="GroupCaptureDetails_2">
           <property name="geometry">
            <rect>
-            <x>580</x>
+            <x>590</x>
             <y>90</y>
-            <width>111</width>
+            <width>101</width>
             <height>291</height>
            </rect>
           </property>
@@ -993,7 +1001,7 @@ QPushButton:pressed{
          <widget class="QGroupBox" name="GroupCaptureDetails">
           <property name="geometry">
            <rect>
-            <x>480</x>
+            <x>490</x>
             <y>100</y>
             <width>101</width>
             <height>281</height>
@@ -1139,7 +1147,7 @@ QPushButton:pressed{
              <widget class="QLabel" name="lblTotalAlerts">
               <property name="geometry">
                <rect>
-                <x>0</x>
+                <x>10</x>
                 <y>20</y>
                 <width>151</width>
                 <height>20</height>
@@ -1149,13 +1157,13 @@ QPushButton:pressed{
                <string>0</string>
               </property>
               <property name="alignment">
-               <set>Qt::AlignCenter</set>
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
               </property>
              </widget>
              <widget class="QLabel" name="lblTotalAlertsTitle">
               <property name="geometry">
                <rect>
-                <x>0</x>
+                <x>10</x>
                 <y>0</y>
                 <width>151</width>
                 <height>20</height>
@@ -1165,7 +1173,7 @@ QPushButton:pressed{
                <string>Total Alerts</string>
               </property>
               <property name="alignment">
-               <set>Qt::AlignCenter</set>
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
               </property>
              </widget>
             </widget>
@@ -1521,7 +1529,7 @@ QPushButton:pressed{
            </property>
           </column>
          </widget>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>30</x>
@@ -1567,9 +1575,9 @@ QPushButton:pressed{
          <widget class="QLabel" name="AlertsPageTitle">
           <property name="geometry">
            <rect>
-            <x>270</x>
+            <x>30</x>
             <y>0</y>
-            <width>171</width>
+            <width>131</width>
             <height>41</height>
            </rect>
           </property>
@@ -1598,7 +1606,339 @@ QPushButton:pressed{
         <height>401</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="LayoutLogs"/>
+      <layout class="QVBoxLayout" name="LayoutLogs">
+       <item>
+        <widget class="QFrame" name="frame_2">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLabel" name="label_2">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>30</y>
+            <width>281</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>View and investigate AW3NIDS application events</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="LogsPageTitle">
+          <property name="geometry">
+           <rect>
+            <x>-10</x>
+            <y>0</y>
+            <width>141</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
+          </property>
+          <property name="text">
+           <string>Logs</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QWidget" name="layoutWidget_4">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>60</y>
+            <width>631</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayoutAlerts_2">
+           <item>
+            <widget class="QFrame" name="frameTotalLogs">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <widget class="QLabel" name="lblTotalLogs">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>20</y>
+                <width>151</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="lblTotalAlertsTitle_2">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>0</y>
+                <width>171</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Total Logs</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frameWarnings">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <widget class="QLabel" name="lblWarningLogs">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>20</y>
+                <width>161</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="lblHighTitle_2">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>0</y>
+                <width>181</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Warnings </string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frameErrors">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <widget class="QLabel" name="lblCriticalTitle_2">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>0</y>
+                <width>171</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Errors</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="lblErrorLogs">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>20</y>
+                <width>131</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QLabel" name="label_17">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>110</y>
+            <width>47</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Filters</string>
+          </property>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget_16">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>130</y>
+            <width>491</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <item>
+            <widget class="QLineEdit" name="txtSearchLogs">
+             <property name="placeholderText">
+              <string>search messages...</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="cmbLogLevel">
+             <item>
+              <property name="text">
+               <string>All Levels</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>INFO</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>WARNING</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ERROR</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>CRITICAL</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QLabel" name="label_18">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>160</y>
+            <width>91</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Event history</string>
+          </property>
+         </widget>
+         <widget class="QTableWidget" name="tableLogs">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>180</y>
+            <width>631</width>
+            <height>181</height>
+           </rect>
+          </property>
+          <column>
+           <property name="text">
+            <string>Time</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Level</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Category</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Message</string>
+           </property>
+          </column>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget_17">
+          <property name="geometry">
+           <rect>
+            <x>500</x>
+            <y>360</y>
+            <width>160</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_12">
+           <item>
+            <widget class="QPushButton" name="btnClearLogs">
+             <property name="text">
+              <string>Clear Logs</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnExportLogs">
+             <property name="text">
+              <string>Export Logs</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="pageAnalytics">
@@ -1624,7 +1964,7 @@ QPushButton:pressed{
           <property name="geometry">
            <rect>
             <x>20</x>
-            <y>90</y>
+            <y>80</y>
             <width>101</width>
             <height>16</height>
            </rect>
@@ -1633,14 +1973,14 @@ QPushButton:pressed{
            <string>Threat Activity</string>
           </property>
           <property name="alignment">
-           <set>Qt::AlignCenter</set>
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
           </property>
          </widget>
          <widget class="QLabel" name="label_16">
           <property name="geometry">
            <rect>
-            <x>360</x>
-            <y>90</y>
+            <x>350</x>
+            <y>80</y>
             <width>101</width>
             <height>16</height>
            </rect>
@@ -1656,7 +1996,7 @@ QPushButton:pressed{
           <property name="geometry">
            <rect>
             <x>20</x>
-            <y>110</y>
+            <y>100</y>
             <width>661</width>
             <height>121</height>
            </rect>
@@ -2024,35 +2364,16 @@ QPushButton:pressed{
            <property name="frameShadow">
             <enum>QFrame::Sunken</enum>
            </property>
-           <widget class="QLabel" name="lblReportsTitle">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>697</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
-            </property>
-            <property name="text">
-             <string>Reports</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
            <widget class="QWidget" name="horizontalLayoutWidget_3">
             <property name="geometry">
              <rect>
               <x>16</x>
-              <y>60</y>
+              <y>40</y>
               <width>661</width>
               <height>41</height>
              </rect>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_12">
+            <layout class="QHBoxLayout" name="layoutGenerateReport">
              <item>
               <widget class="QLabel" name="lblReportType">
                <property name="text">
@@ -2121,8 +2442,8 @@ QPushButton:pressed{
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>30</y>
-              <width>697</width>
+              <y>20</y>
+              <width>261</width>
               <height>21</height>
              </rect>
             </property>
@@ -2137,12 +2458,12 @@ QPushButton:pressed{
             <property name="geometry">
              <rect>
               <x>50</x>
-              <y>110</y>
+              <y>90</y>
               <width>591</width>
               <height>41</height>
              </rect>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_13">
+            <layout class="QHBoxLayout" name="layoutReportCards">
              <item>
               <widget class="QFrame" name="frameReportsTotalAlerts">
                <property name="frameShape">
@@ -2316,10 +2637,10 @@ QPushButton:pressed{
            <widget class="QTableWidget" name="tableReports">
             <property name="geometry">
              <rect>
-              <x>10</x>
-              <y>160</y>
-              <width>681</width>
-              <height>181</height>
+              <x>90</x>
+              <y>140</y>
+              <width>511</width>
+              <height>201</height>
              </rect>
             </property>
             <property name="layoutDirection">
@@ -2342,27 +2663,42 @@ QPushButton:pressed{
             </property>
             <column>
              <property name="text">
+              <string>Time</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
               <string>Threat</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
              </property>
             </column>
             <column>
              <property name="text">
               <string>Source IP</string>
              </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Destination IP </string>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
              </property>
             </column>
             <column>
              <property name="text">
               <string>Severity</string>
              </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
+             </property>
             </column>
             <column>
              <property name="text">
-              <string>Count</string>
+              <string>Status</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
              </property>
             </column>
            </widget>
@@ -2375,7 +2711,7 @@ QPushButton:pressed{
               <height>31</height>
              </rect>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_14">
+            <layout class="QHBoxLayout" name="layourRepotsBtns">
              <item>
               <widget class="QPushButton" name="btnExportCSV_2">
                <property name="text">
@@ -2420,8 +2756,8 @@ QPushButton:pressed{
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>697</width>
-             <height>397</height>
+             <width>98</width>
+             <height>28</height>
             </rect>
            </property>
            <widget class="QFrame" name="frameSettings">
@@ -2449,8 +2785,8 @@ QPushButton:pressed{
              <property name="geometry">
               <rect>
                <x>10</x>
-               <y>120</y>
-               <width>311</width>
+               <y>170</y>
+               <width>201</width>
                <height>151</height>
               </rect>
              </property>
@@ -2462,7 +2798,7 @@ QPushButton:pressed{
                <rect>
                 <x>20</x>
                 <y>20</y>
-                <width>281</width>
+                <width>151</width>
                 <height>126</height>
                </rect>
               </property>
@@ -2543,10 +2879,10 @@ QPushButton:pressed{
             <widget class="QGroupBox" name="groupAppearance">
              <property name="geometry">
               <rect>
-               <x>360</x>
-               <y>170</y>
-               <width>251</width>
-               <height>81</height>
+               <x>450</x>
+               <y>140</y>
+               <width>241</width>
+               <height>91</height>
               </rect>
              </property>
              <property name="title">
@@ -2606,8 +2942,8 @@ QPushButton:pressed{
              <property name="geometry">
               <rect>
                <x>10</x>
-               <y>10</y>
-               <width>351</width>
+               <y>50</y>
+               <width>431</width>
                <height>111</height>
               </rect>
              </property>
@@ -2618,30 +2954,20 @@ QPushButton:pressed{
               <property name="geometry">
                <rect>
                 <x>20</x>
-                <y>20</y>
-                <width>321</width>
-                <height>80</height>
+                <y>50</y>
+                <width>161</width>
+                <height>51</height>
                </rect>
               </property>
               <layout class="QFormLayout" name="formLayoutGenSettings">
-               <item row="0" column="1">
-                <widget class="QComboBox" name="cmbSetInterface"/>
-               </item>
                <item row="0" column="0">
-                <widget class="QLabel" name="lblInterfaces">
-                 <property name="text">
-                  <string>Monitoring Interface: </string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
                 <widget class="QLabel" name="label_5">
                  <property name="text">
                   <string>Packet History</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
+               <item row="0" column="1">
                 <widget class="QSpinBox" name="spinPacketHistory">
                  <property name="minimum">
                   <number>10</number>
@@ -2654,7 +2980,14 @@ QPushButton:pressed{
                  </property>
                 </widget>
                </item>
-               <item row="2" column="1">
+               <item row="1" column="0">
+                <widget class="QLabel" name="lblRefreshRate">
+                 <property name="text">
+                  <string>Refresh Rate (ms)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
                 <widget class="QSpinBox" name="spinRefreshRate">
                  <property name="minimum">
                   <number>100</number>
@@ -2667,14 +3000,30 @@ QPushButton:pressed{
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0">
-                <widget class="QLabel" name="lblRefreshRate">
-                 <property name="text">
-                  <string>Refresh Rate (ms)</string>
-                 </property>
-                </widget>
-               </item>
               </layout>
+             </widget>
+             <widget class="QComboBox" name="cmbSetInterface">
+              <property name="geometry">
+               <rect>
+                <x>131</x>
+                <y>20</y>
+                <width>281</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="lblInterfaces">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>20</y>
+                <width>105</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Monitoring Interface: </string>
+              </property>
              </widget>
             </widget>
             <widget class="QWidget" name="horizontalLayoutWidget_8">
@@ -2706,9 +3055,9 @@ QPushButton:pressed{
             <widget class="QGroupBox" name="groupNotifications">
              <property name="geometry">
               <rect>
-               <x>370</x>
-               <y>10</y>
-               <width>301</width>
+               <x>220</x>
+               <y>170</y>
+               <width>221</width>
                <height>151</height>
               </rect>
              </property>
@@ -2756,6 +3105,25 @@ QPushButton:pressed{
               </layout>
              </widget>
             </widget>
+            <widget class="QLabel" name="lblSettingsTitle">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>0</y>
+               <width>141</width>
+               <height>51</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Settings</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
            </widget>
           </widget>
          </widget>
@@ -2783,25 +3151,12 @@ QPushButton:pressed{
          <property name="frameShadow">
           <enum>QFrame::Sunken</enum>
          </property>
-         <widget class="QPushButton" name="btnRunSimulation">
-          <property name="geometry">
-           <rect>
-            <x>500</x>
-            <y>80</y>
-            <width>101</width>
-            <height>31</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Start Simulation</string>
-          </property>
-         </widget>
          <widget class="QLabel" name="lblSimulatorTitle">
           <property name="geometry">
            <rect>
-            <x>10</x>
-            <y>10</y>
-            <width>681</width>
+            <x>20</x>
+            <y>20</y>
+            <width>191</width>
             <height>41</height>
            </rect>
           </property>
@@ -2821,9 +3176,9 @@ QPushButton:pressed{
           <property name="geometry">
            <rect>
             <x>30</x>
-            <y>70</y>
+            <y>60</y>
             <width>271</width>
-            <height>41</height>
+            <height>31</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_10">
@@ -2842,9 +3197,9 @@ QPushButton:pressed{
          <widget class="QWidget" name="horizontalLayoutWidget_12">
           <property name="geometry">
            <rect>
-            <x>320</x>
-            <y>70</y>
-            <width>141</width>
+            <x>30</x>
+            <y>100</y>
+            <width>211</width>
             <height>41</height>
            </rect>
           </property>
@@ -2863,13 +3218,20 @@ QPushButton:pressed{
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QPushButton" name="btnRunSimulation">
+             <property name="text">
+              <string>Start Simulation</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
          <widget class="QWidget" name="horizontalLayoutWidget_15">
           <property name="geometry">
            <rect>
             <x>30</x>
-            <y>130</y>
+            <y>150</y>
             <width>641</width>
             <height>231</height>
            </rect>
@@ -3254,7 +3616,7 @@ QPushButton:pressed{
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>957</width>
+     <width>968</width>
      <height>21</height>
     </rect>
    </property>

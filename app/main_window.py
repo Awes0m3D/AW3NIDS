@@ -1,8 +1,11 @@
-from PySide6.QtWidgets import QMainWindow, QMessageBox, QTableWidgetItem
+import os
+from PySide6.QtWidgets import QMainWindow, QMessageBox, QTableWidgetItem, QFileDialog
 from PySide6.QtCore import Qt, QTimer
 from app.ui_main_window import Ui_MainWindow
 from core.capture import PacketCapture
 from datetime import datetime
+import csv
+import logging
 from scapy.layers.inet import IP, TCP, UDP, ICMP
 from core.alerts import AlertManager
 from core.detector import Detector
@@ -12,9 +15,7 @@ from PySide6.QtWidgets import QTableWidget,QHeaderView,QAbstractItemView
 from simulator.attack_simulator import AttackSimulator
 from core.analytics import Analytics
 from app.about_dialog import AboutDialog
-from settings.config import ConfigManager
 from database.alerts import AlertRepository
-from PySide6.QtGui import QPixmap
 from settings.config import ConfigManager
 from database.database import DatabaseManager
 from core.firewall import FirewallManager
@@ -28,6 +29,7 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.setup_logging()
         self.config = ConfigManager()
         print(type(self.config))
         print(hasattr(self.config, "get"))
@@ -45,7 +47,6 @@ class MainWindow(QMainWindow):
 
 # Alerts Page
         self.firewall_manager = FirewallManager()
-
         self.ui.btnBlockIP.clicked.connect(self.block_ip)
         self.ui.btnUnblockIP.clicked.connect(self.unblock_ip)
 
@@ -55,7 +56,6 @@ class MainWindow(QMainWindow):
         self.alerts.alert_created.connect(
             self.analytics.add_alert
         )
-
 
         self.load_settings()
         self.load_saved_alerts()
@@ -144,7 +144,6 @@ class MainWindow(QMainWindow):
         header.setSectionResizeMode(4, QHeaderView.ResizeToContents)   # Length
 
         # Appearance
-        table.setAlternatingRowColors(True)
         table.setSelectionBehavior(QAbstractItemView.SelectRows)
         table.setSelectionMode(QAbstractItemView.SingleSelection)
         table.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -156,9 +155,9 @@ class MainWindow(QMainWindow):
         # Stretch the last column
         header.setStretchLastSection(True)
 
-        #--------------- 
+        # ---------------
         # Graph
-        #---------------
+        # ---------------
 
         self.graph = TrafficGraph()
 
@@ -176,6 +175,8 @@ class MainWindow(QMainWindow):
         # Setup the application
         self.setup_navigation()
         self.setup_toolbar()
+        self.setup_reports()
+        self.setup_logs_page()
 
         self.load_interfaces()
 
@@ -276,6 +277,20 @@ class MainWindow(QMainWindow):
                 self.ui.pageSettings
             )
         )
+    
+    # -----------------------------------------
+    # Reports
+    # -----------------------------------------
+    def setup_reports(self):
+
+        # Connect report buttons
+        self.ui.btnGenerateReport.clicked.connect(
+            self.generate_report
+        )
+
+        #self.ui.btnExportReport.clicked.connect(
+         #   self.export_report
+        #)
 
     # -----------------------------------------
     # Toolbar
@@ -485,52 +500,70 @@ class MainWindow(QMainWindow):
         header.setSectionResizeMode(5, QHeaderView.ResizeToContents)
 
 
-
         self.alert_repo.save(alert)
 
-        alerts = self.alert_repo.all()
+        # this is to record the security alert in the application log
+        self.app_logger.warning(
+            "Security alert | Threat: %s | Source IP: %s | Severity: %s | Details: %s",
+            alert.get("threat", "Unknown"),
+            alert.get("source_ip", "-"),
+            alert.get("severity", "Medium"),
+            alert.get("details", "")
+        )
 
+        alerts = self.alert_repo.all()
         # -----------------------------------------
     # Toolbar Functions
     # -----------------------------------------
-
     def start_monitoring(self):
+        
+            iface = self.ui.cmbInterface.currentData()
 
-        iface = self.ui.cmbInterface.currentData()
+            if iface is None:
+                QMessageBox.warning(
+                    self,
+                    "AW3NIDS",
+                    "Please select a network interface."
+                    )
+                return
 
-        if iface is None:
-            QMessageBox.warning(
+            self.capture.start_capture(iface)
+            
+            self.app_logger.info(
+                "Packet monitoring started on interface: %s",iface
+            )
+
+            self.ui.lblNetworkStatus.setText("🟢 Monitoring")
+            self.ui.lblStatusDetail.setText("🟢 Monitoring")
+
+
+
+            QMessageBox.information(
                 self,
                 "AW3NIDS",
-                "Please select a network interface."
-                )
-            return
-
-        self.capture.start_capture(iface)
-
-        self.ui.lblNetworkStatus.setText("🟢 Monitoring")
-
-        self.ui.lblStatusDetail.setText("🟢 Monitoring")
-
-        QMessageBox.information(
-            self,
-            "AW3NIDS",
-            "Monitoring Started"
-        )
-        self.ui.btnStartCapture.setEnabled(False)
-        self.ui.btnStopCapture.setEnabled(True)
-
-        self.ui.cmbInterface.setEnabled(False)
+                "Monitoring Started"
+            )
+            self.ui.btnStartCapture.setEnabled(False)
+            self.ui.btnStopCapture.setEnabled(True)
+            self.ui.cmbInterface.setEnabled(False)
 
     
     def stop_monitoring(self):
         try:
             self.capture.stop_capture()
-
-            self.ui.lblStatus.setText("🔴 Not Monitoring")
+            self.app_logger.info("Packet monitoring stopped successfully")
+            self.ui.lblNetworkStatus.setText("🔴 Not Monitoring")
 
         except Exception as e:
+            self.app_logger.exception("Failed to stop packet monitoring")
             print("Stop error:", e)
+
+            QMessageBox.warning(
+                self,
+                "AW3NIDS",
+                f"Failed to stop monitoring: \n{e}"
+            )
+            return
 
         QMessageBox.information(
             self,
@@ -550,14 +583,229 @@ class MainWindow(QMainWindow):
     
         self.ui.tableRecentAlerts.setRowCount(0)
         self.ui.tableLivePackets.setRowCount(0)
+    
+    def generate_report(self):
+
+
+        try:
+            alerts = self.alert_repo.all()
+
+            table = self.ui.tabeReports
+
+            # Clear previous report
+            table.setRowCount(0)
+
+            # Add alerts to report table
+            for alert in alerts:
+
+                row = table.rowCount()
+                table.insertRow(row)
+
+                table.setItem(
+                    row,
+                    0,
+                    QTableWidgetItem(
+                        alert.get("time", "-")
+                    )
+                )
+
+                table.setItem(
+                    row,
+                    1,
+                    QTableWidgetItem(
+                        alert.get("threat", "-")
+                    )
+                )
+
+                table.setItem(
+                    row,
+                    2,
+                    QTableWidgetItem(
+                        alert.get("source_ip", "-")
+                    )
+                )
+
+                table.setItem(
+                    row,
+                    3,
+                    QTableWidgetItem(
+                        alert.get("severity", "-")
+                    )
+                )
+
+                table.setItem(
+                    row,
+                    4,
+                    QTableWidgetItem(
+                        alert.get("status", "-")
+                    )
+                )
+
+            QMessageBox.information(
+                self,
+                "AW3NIDS",
+                f"Report generated successfully.\n\n"
+                f"Total alerts: {len(alerts)}"
+            )
+
+        except Exception as e:
+
+            QMessageBox.critical(
+                self,
+                "Report Error",
+                f"Failed to generate report:\n\n{str(e)}"
+            )
+
+    
+    def generate_report(self):
+    
+        try:
+            alerts = self.alert_repo.all()
+
+            # Clear existing report table
+            self.ui.tableReports.setRowCount(0)
+
+            # Display alerts
+            for alert in alerts:
+
+                row = self.ui.tableReports.rowCount()
+                self.ui.tableReports.insertRow(row)
+
+                self.ui.tableReports.setItem(
+                    row,
+                    0,
+                    QTableWidgetItem(
+                        alert.get("time", "-")
+                    )
+                )
+
+                self.ui.tableReports.setItem(
+                    row,
+                    1,
+                    QTableWidgetItem(
+                        alert.get("threat", "-")
+                    )
+                )
+
+                self.ui.tableReports.setItem(
+                    row,
+                    2,
+                    QTableWidgetItem(
+                        alert.get("source_ip", "-")
+                    )
+                )
+
+                self.ui.tableReports.setItem(
+                    row,
+                    3,
+                    QTableWidgetItem(
+                        alert.get("severity", "-")
+                    )
+                )
+
+                self.ui.tableReports.setItem(
+                    row,
+                    4,
+                    QTableWidgetItem(
+                        alert.get("status", "-")
+                    )
+                )
+
+            QMessageBox.information(
+                self,
+                "AW3NIDS",
+                f"Report generated successfully.\n\n"
+                f"Total alerts: {len(alerts)}"
+            )
+
+        except Exception as e:
+
+            QMessageBox.critical(
+                self,
+                "Report Error",
+                f"Failed to generate report:\n\n{str(e)}"
+            )
         
     def export_report(self):
 
-        QMessageBox.information(
+        #QMessageBox.information(
+         #   self,
+          #  "AW3NIDS",
+           # "Report Export Coming Soon"
+       # )
+    
+        table = self.ui.tableReports
+
+        if table.rowCount() == 0:
+            QMessageBox.warning(
+                self,
+                "AW3NIDS",
+                "Please generate a report first."
+            ) 
+            return
+
+        file_path, _ = QFileDialog.getSaveFileName(
             self,
-            "AW3NIDS",
-            "Report Export Coming Soon"
+            "Export AW3NIDS Report",
+            "AW3NIDS_Report.csv",
+            "CSV Files (*.csv)"
         )
+
+        if not file_path:
+            return
+
+        try:
+            with open(
+                file_path,
+                "w",
+                newline="",
+                encoding="utf-8"
+            ) as file:
+
+                writer = csv.writer(file)
+
+                # Write column headers
+                headers = []
+
+                for column in range(table.columnCount()):
+                    header = table.horizontalHeaderItem(column)
+
+                    if header:
+                        headers.append(header.text())
+                    else:
+                        headers.append(f"Column {column + 1}")
+
+                writer.writerow(headers)
+
+                # Write table data
+                for row in range(table.rowCount()):
+
+                    row_data = []
+
+                    for column in range(table.columnCount()):
+
+                        item = table.item(row, column)
+
+                        if item:
+                            row_data.append(item.text())
+                        else:
+                            row_data.append("")
+
+                    writer.writerow(row_data)
+
+            QMessageBox.information(
+                self,
+                "AW3NIDS",
+                "Report exported successfully."
+            )
+
+        except Exception as e:
+
+            QMessageBox.critical(
+                self,
+                "Export Error",
+                f"Failed to export report:\n\n{str(e)}"
+            )
 
        
     def update_status(self, status):
@@ -567,11 +815,6 @@ class MainWindow(QMainWindow):
         else:
             self.ui.lblNetworkStatus.setText("🔴 Not Monitoring")
 
-       # if status == "Monitoring":
-        #    self.ui.lblInterfaceDetail.setText(f"using {interfaces}")
-        #else:
-         #   self.ui.lblInterfaceDetail.setText("None")
-
 
     #---------------------------
     # Load Interface
@@ -580,6 +823,7 @@ class MainWindow(QMainWindow):
     def load_interfaces(self):
     
         self.ui.cmbInterface.clear()
+        self.ui.cmbSetInterface.clear()
 
         interfaces = self.capture.get_interfaces()
         
@@ -589,6 +833,10 @@ class MainWindow(QMainWindow):
             self.ui.cmbInterface.addItem(
                 iface.description,
                 iface
+            )
+            
+            self.ui.cmbSetInterface.addItem(
+                iface.description, iface
             )
 
 
@@ -740,12 +988,15 @@ class MainWindow(QMainWindow):
         self.ui.lblActiveHosts.setText(
             str(self.analytics.get_active_hosts())
         )
+        self.ui.lblHostCount.setText(
+            str(self.analytics.get_active_hosts())
+        )
 
         uptime = datetime.now() - self.analytics.start_time
 
         self.ui.lblUptime.setText(str(uptime).split(".")[0])
 
-            # Attack breakdown
+        # Attack breakdown
         threats = self.analytics.get_threat_stats()
 
         self.ui.lblPortScanCount.setText(
@@ -765,8 +1016,8 @@ class MainWindow(QMainWindow):
         )
 
     def load_saved_alerts(self):
-        
-        table = self.ui.tableRecentAlerts
+
+        table = self.ui.tableAlerts
 
         table.setRowCount(0)
 
@@ -783,11 +1034,28 @@ class MainWindow(QMainWindow):
             table.setItem(row, 3, QTableWidgetItem(alert["severity"]))
             table.setItem(row, 4, QTableWidgetItem(alert["status"]))
             table.setItem(row, 5, QTableWidgetItem(alert["details"]))
-    
-    def show_about(self):
-    
-        dialog = AboutDialog()
 
+    def load_saved_alerts_database(self):
+
+        table = self.ui.tableDatabase
+
+        table.setRowCount(0)
+
+        alerts = self.alert_repo.all()
+
+        for alert in alerts:
+            row = table.rowCount()
+            table.insertRow(row)
+
+            table.setItem(row, 0, QTableWidgetItem(alert["time"]))
+            table.setItem(row, 1, QTableWidgetItem(alert["threat"]))
+            table.setItem(row, 2, QTableWidgetItem(alert["source_ip"]))
+            table.setItem(row, 3, QTableWidgetItem(alert["severity"]))
+            table.setItem(row, 4, QTableWidgetItem(alert["status"]))
+            table.setItem(row, 5, QTableWidgetItem(alert["details"]))
+
+    def show_about(self):
+        dialog = AboutDialog()
         dialog.exec()
     
     def load_settings(self):
@@ -908,8 +1176,6 @@ class MainWindow(QMainWindow):
             "Settings saved successfully.",
             3000
         )
-
-
 
     def reset_settings(self):
     
@@ -1074,3 +1340,191 @@ class MainWindow(QMainWindow):
 
         if item:
             item.setText(text)
+
+    
+    def setup_logging(self):
+        """Configure persistent application logging."""
+        os.makedirs("logs", exist_ok=True)
+
+        self.log_file = os.path.join("logs", "aw3nids.log")
+
+        logging.basicConfig(
+            filename=self.log_file,
+            level=logging.INFO,
+            format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+            encoding="utf-8",
+            force=True,
+        )
+
+        self.app_logger = logging.getLogger("AW3NIDS")
+        self.app_logger.info("AW3NIDS application started")
+    
+    def setup_logs_page(self):
+        """Connect the Logs page controls."""
+        self.ui.tableLogs.setColumnCount(4)
+        self.ui.tableLogs.setHorizontalHeaderLabels(
+            ["Time", "Level", "Category", "Message"]
+        )
+        self.ui.tableLogs.setAlternatingRowColors(True)
+        self.ui.tableLogs.setSortingEnabled(False)
+
+        self.ui.txtSearchLogs.textChanged.connect(self.refresh_logs)
+        self.ui.cmbLogLevel.currentTextChanged.connect(self.refresh_logs)
+        self.ui.btnClearLogs.clicked.connect(self.clear_logs)
+        self.ui.btnExportLogs.clicked.connect(self.export_logs)
+
+        self.load_logs()
+
+
+    def read_log_entries(self):
+        """Read saved log entries from the application log file."""
+        entries = []
+
+        if not os.path.exists(self.log_file):
+            return entries
+
+        try:
+            with open(self.log_file, "r", encoding="utf-8") as log_file:
+                for line in log_file:
+                    parts = line.rstrip("\n").split(" | ", 3)
+
+                    if len(parts) == 4:
+                        timestamp, level, category, message = parts
+                        entries.append(
+                            (timestamp, level, category, message)
+                        )
+                    elif line.strip():
+                        entries.append(
+                            ("", "INFO", "AW3NIDS", line.strip())
+                        )
+
+        except OSError:
+            self.app_logger.exception("Failed to read application logs")
+
+        return entries
+
+
+    def load_logs(self):
+        """Load saved logs into the Logs page."""
+        self.refresh_logs()
+
+
+    def refresh_logs(self, *_):
+        """Refresh the table and apply the search and level filters."""
+        entries = self.read_log_entries()
+
+        total = len(entries)
+        warnings = sum(
+            1 for entry in entries if entry[1] == "WARNING"
+        )
+        errors = sum(
+            1 for entry in entries
+            if entry[1] in ("ERROR", "CRITICAL")
+        )
+
+        self.ui.lblTotalLogs.setText(str(total))
+        self.ui.lblWarningLogs.setText(str(warnings))
+        self.ui.lblErrorLogs.setText(str(errors))
+
+        search_text = self.ui.txtSearchLogs.text().strip().lower()
+        selected_level = self.ui.cmbLogLevel.currentText()
+
+        filtered_entries = []
+
+        for entry in entries:
+            timestamp, level, category, message = entry
+
+            if selected_level != "All Levels" and level != selected_level:
+                continue
+
+            searchable_text = " ".join(entry).lower()
+
+            if search_text and search_text not in searchable_text:
+                continue
+
+            filtered_entries.append(entry)
+
+        table = self.ui.tableLogs
+        table.setRowCount(0)
+
+        for entry in reversed(filtered_entries):
+            row = table.rowCount()
+            table.insertRow(row)
+
+            for column, value in enumerate(entry):
+                table.setItem(
+                    row, column, QTableWidgetItem(str(value))
+                )
+
+        table.resizeColumnsToContents()
+        table.horizontalHeader().setStretchLastSection(True)
+
+
+    def clear_logs(self):
+        """Clear the saved log file and refresh the table."""
+        answer = QMessageBox.question(
+            self,
+            "Clear Logs",
+            "Are you sure you want to clear all saved application logs?",
+            QMessageBox.StandardButton.Yes
+            | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No,
+        )
+
+        if answer != QMessageBox.StandardButton.Yes:
+            return
+
+        try:
+            with open(self.log_file, "w", encoding="utf-8"):
+                pass
+
+            self.refresh_logs()
+
+        except OSError as error:
+            QMessageBox.warning(
+                self,
+                "Clear Logs Failed",
+                f"Could not clear the log file:\n{error}",
+            )
+
+
+    def export_logs(self):
+        """Export the currently displayed logs to CSV."""
+        path, _ = QFileDialog.getSaveFileName(
+            self,
+            "Export Logs",
+            "aw3nids_logs.csv",
+            "CSV Files (*.csv)",
+        )
+
+        if not path:
+            return
+
+        try:
+            with open(
+                path, "w", newline="", encoding="utf-8-sig"
+            ) as csv_file:
+                writer = csv.writer(csv_file)
+                writer.writerow(["Time", "Level", "Category", "Message"])
+
+                table = self.ui.tableLogs
+
+                for row in range(table.rowCount()):
+                    writer.writerow([
+                        table.item(row, column).text()
+                        if table.item(row, column) else ""
+                        for column in range(4)
+                    ])
+
+            QMessageBox.information(
+                self,
+                "Export Complete",
+                "The displayed logs were exported successfully.",
+            )
+
+        except OSError as error:
+            QMessageBox.warning(
+                self,
+                "Export Failed",
+                f"Could not export logs:\n{error}",
+            )

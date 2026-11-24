@@ -1,6 +1,5 @@
 from database.database import DatabaseManager
 
-
 class AlertRepository:
 
     def __init__(self, database):

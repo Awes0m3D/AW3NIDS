@@ -29,7 +29,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(957, 546)
+        MainWindow.resize(968, 546)
         MainWindow.setAutoFillBackground(False)
         self.actionStartMonitoring = QAction(MainWindow)
         self.actionStartMonitoring.setObjectName(u"actionStartMonitoring")
@@ -59,17 +59,18 @@ class Ui_MainWindow(object):
         self.sidebarFrame.setStyleSheet(u"background-color:#1E293B;")
         self.sidebarFrame.setFrameShape(QFrame.StyledPanel)
         self.sidebarFrame.setFrameShadow(QFrame.Raised)
-        self.iblLogo = QLabel(self.sidebarFrame)
-        self.iblLogo.setObjectName(u"iblLogo")
-        self.iblLogo.setGeometry(QRect(0, 0, 231, 41))
-        self.iblLogo.setStyleSheet(u"font-size: 22pt;\n"
+        self.iblAppLogo = QLabel(self.sidebarFrame)
+        self.iblAppLogo.setObjectName(u"iblAppLogo")
+        self.iblAppLogo.setGeometry(QRect(0, 0, 231, 51))
+        self.iblAppLogo.setStyleSheet(u"font-size: 22pt;\n"
 "font: 87 8pt \"Product Sans Black\";\n"
 "font-weight: bold;\n"
 "color: white;")
-        self.iblLogo.setAlignment(Qt.AlignCenter)
+        self.iblAppLogo.setScaledContents(True)
+        self.iblAppLogo.setAlignment(Qt.AlignCenter)
         self.verticalLayoutWidget_2 = QWidget(self.sidebarFrame)
         self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
-        self.verticalLayoutWidget_2.setGeometry(QRect(30, 40, 171, 361))
+        self.verticalLayoutWidget_2.setGeometry(QRect(30, 52, 171, 361))
         self.NavSidebar = QVBoxLayout(self.verticalLayoutWidget_2)
         self.NavSidebar.setObjectName(u"NavSidebar")
         self.NavSidebar.setContentsMargins(0, 0, 0, 0)
@@ -139,6 +140,28 @@ class Ui_MainWindow(object):
 
         self.NavSidebar.addWidget(self.btnAlerts)
 
+        self.btnSimulator = QPushButton(self.verticalLayoutWidget_2)
+        self.btnSimulator.setObjectName(u"btnSimulator")
+        self.btnSimulator.setStyleSheet(u"QPushButton{\n"
+"	font: 8pt \"Product Sans\";\n"
+"	background_color: #334155; \n"
+"	color: white;\n"
+"	border: none;\n"
+"	padding:9px;\n"
+"	text-align: left;\n"
+"	font-size: 11pt;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"	background-color:#475569;\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"	background-color: #0EA5E9;\n"
+"}")
+
+        self.NavSidebar.addWidget(self.btnSimulator)
+
         self.btnAnalytics = QPushButton(self.verticalLayoutWidget_2)
         self.btnAnalytics.setObjectName(u"btnAnalytics")
         self.btnAnalytics.setStyleSheet(u"QPushButton{\n"
@@ -182,28 +205,6 @@ class Ui_MainWindow(object):
 "}")
 
         self.NavSidebar.addWidget(self.btnDatabase)
-
-        self.btnSimulator = QPushButton(self.verticalLayoutWidget_2)
-        self.btnSimulator.setObjectName(u"btnSimulator")
-        self.btnSimulator.setStyleSheet(u"QPushButton{\n"
-"	font: 8pt \"Product Sans\";\n"
-"	background_color: #334155; \n"
-"	color: white;\n"
-"	border: none;\n"
-"	padding:9px;\n"
-"	text-align: left;\n"
-"	font-size: 11pt;\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-"	background-color:#475569;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"	background-color: #0EA5E9;\n"
-"}")
-
-        self.NavSidebar.addWidget(self.btnSimulator)
 
         self.btnReports = QPushButton(self.verticalLayoutWidget_2)
         self.btnReports.setObjectName(u"btnReports")
@@ -468,6 +469,7 @@ class Ui_MainWindow(object):
         self.frameCapture.setFrameShape(QFrame.StyledPanel)
         self.frameCapture.setFrameShadow(QFrame.Sunken)
         self.cmbInterface = QComboBox(self.frameCapture)
+        self.cmbInterface.addItem("")
         self.cmbInterface.setObjectName(u"cmbInterface")
         self.cmbInterface.setGeometry(QRect(70, 10, 441, 21))
         self.lblInterface = QLabel(self.frameCapture)
@@ -478,7 +480,7 @@ class Ui_MainWindow(object):
         self.btnRefreshInterfaces.setGeometry(QRect(530, 10, 75, 23))
         self.lblLivePacketTable = QLabel(self.frameCapture)
         self.lblLivePacketTable.setObjectName(u"lblLivePacketTable")
-        self.lblLivePacketTable.setGeometry(QRect(150, 70, 121, 20))
+        self.lblLivePacketTable.setGeometry(QRect(10, 70, 121, 20))
         self.lblLivePacketTable.setAlignment(Qt.AlignCenter)
         self.tableLivePackets_2 = QTableWidget(self.frameCapture)
         if (self.tableLivePackets_2.columnCount() < 6):
@@ -494,13 +496,13 @@ class Ui_MainWindow(object):
         __qtablewidgetitem15 = QTableWidgetItem()
         self.tableLivePackets_2.setHorizontalHeaderItem(4, __qtablewidgetitem15)
         self.tableLivePackets_2.setObjectName(u"tableLivePackets_2")
-        self.tableLivePackets_2.setGeometry(QRect(10, 90, 461, 301))
+        self.tableLivePackets_2.setGeometry(QRect(10, 90, 471, 301))
         self.tableLivePackets_2.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.tableLivePackets_2.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.tableLivePackets_2.setColumnCount(6)
         self.GroupCaptureDetails_2 = QGroupBox(self.frameCapture)
         self.GroupCaptureDetails_2.setObjectName(u"GroupCaptureDetails_2")
-        self.GroupCaptureDetails_2.setGeometry(QRect(580, 90, 111, 291))
+        self.GroupCaptureDetails_2.setGeometry(QRect(590, 90, 101, 291))
         self.formLayout = QFormLayout(self.GroupCaptureDetails_2)
         self.formLayout.setObjectName(u"formLayout")
         self.lblDetailTime = QLabel(self.GroupCaptureDetails_2)
@@ -550,7 +552,7 @@ class Ui_MainWindow(object):
 
         self.GroupCaptureDetails = QGroupBox(self.frameCapture)
         self.GroupCaptureDetails.setObjectName(u"GroupCaptureDetails")
-        self.GroupCaptureDetails.setGeometry(QRect(480, 100, 101, 281))
+        self.GroupCaptureDetails.setGeometry(QRect(490, 100, 101, 281))
         self.formLayout_4 = QFormLayout(self.GroupCaptureDetails)
         self.formLayout_4.setObjectName(u"formLayout_4")
         self.time = QLabel(self.GroupCaptureDetails)
@@ -642,12 +644,12 @@ class Ui_MainWindow(object):
         self.frameTotalAlerts.setFrameShadow(QFrame.Sunken)
         self.lblTotalAlerts = QLabel(self.frameTotalAlerts)
         self.lblTotalAlerts.setObjectName(u"lblTotalAlerts")
-        self.lblTotalAlerts.setGeometry(QRect(0, 20, 151, 20))
-        self.lblTotalAlerts.setAlignment(Qt.AlignCenter)
+        self.lblTotalAlerts.setGeometry(QRect(10, 20, 151, 20))
+        self.lblTotalAlerts.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.lblTotalAlertsTitle = QLabel(self.frameTotalAlerts)
         self.lblTotalAlertsTitle.setObjectName(u"lblTotalAlertsTitle")
-        self.lblTotalAlertsTitle.setGeometry(QRect(0, 0, 151, 20))
-        self.lblTotalAlertsTitle.setAlignment(Qt.AlignCenter)
+        self.lblTotalAlertsTitle.setGeometry(QRect(10, 0, 151, 20))
+        self.lblTotalAlertsTitle.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
         self.horizontalLayoutAlerts.addWidget(self.frameTotalAlerts)
 
@@ -801,35 +803,35 @@ class Ui_MainWindow(object):
         self.tableBlockedIPs.setHorizontalHeaderItem(3, __qtablewidgetitem26)
         self.tableBlockedIPs.setObjectName(u"tableBlockedIPs")
         self.tableBlockedIPs.setGeometry(QRect(10, 280, 681, 81))
-        self.widget = QWidget(self.frameAlerts)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(30, 250, 639, 29))
-        self.widgetIPControls = QHBoxLayout(self.widget)
+        self.layoutWidget = QWidget(self.frameAlerts)
+        self.layoutWidget.setObjectName(u"layoutWidget")
+        self.layoutWidget.setGeometry(QRect(30, 250, 639, 29))
+        self.widgetIPControls = QHBoxLayout(self.layoutWidget)
         self.widgetIPControls.setObjectName(u"widgetIPControls")
         self.widgetIPControls.setContentsMargins(0, 0, 0, 0)
-        self.lblIPAddress = QLabel(self.widget)
+        self.lblIPAddress = QLabel(self.layoutWidget)
         self.lblIPAddress.setObjectName(u"lblIPAddress")
 
         self.widgetIPControls.addWidget(self.lblIPAddress)
 
-        self.txtIPAddress = QLineEdit(self.widget)
+        self.txtIPAddress = QLineEdit(self.layoutWidget)
         self.txtIPAddress.setObjectName(u"txtIPAddress")
 
         self.widgetIPControls.addWidget(self.txtIPAddress)
 
-        self.btnBlockIP = QPushButton(self.widget)
+        self.btnBlockIP = QPushButton(self.layoutWidget)
         self.btnBlockIP.setObjectName(u"btnBlockIP")
 
         self.widgetIPControls.addWidget(self.btnBlockIP)
 
-        self.btnUnblockIP = QPushButton(self.widget)
+        self.btnUnblockIP = QPushButton(self.layoutWidget)
         self.btnUnblockIP.setObjectName(u"btnUnblockIP")
 
         self.widgetIPControls.addWidget(self.btnUnblockIP)
 
         self.AlertsPageTitle = QLabel(self.frameAlerts)
         self.AlertsPageTitle.setObjectName(u"AlertsPageTitle")
-        self.AlertsPageTitle.setGeometry(QRect(270, 0, 171, 41))
+        self.AlertsPageTitle.setGeometry(QRect(30, 0, 131, 41))
         self.AlertsPageTitle.setStyleSheet(u"font: 75 20pt \"MS Shell Dlg 2\";")
         self.AlertsPageTitle.setAlignment(Qt.AlignCenter)
 
@@ -844,6 +846,137 @@ class Ui_MainWindow(object):
         self.LayoutLogs = QVBoxLayout(self.verticalLayoutWidget_5)
         self.LayoutLogs.setObjectName(u"LayoutLogs")
         self.LayoutLogs.setContentsMargins(0, 0, 0, 0)
+        self.frame_2 = QFrame(self.verticalLayoutWidget_5)
+        self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setFrameShape(QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QFrame.Raised)
+        self.label_2 = QLabel(self.frame_2)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(30, 30, 281, 21))
+        self.LogsPageTitle = QLabel(self.frame_2)
+        self.LogsPageTitle.setObjectName(u"LogsPageTitle")
+        self.LogsPageTitle.setGeometry(QRect(-10, 0, 141, 31))
+        self.LogsPageTitle.setStyleSheet(u"font: 75 20pt \"MS Shell Dlg 2\";")
+        self.LogsPageTitle.setAlignment(Qt.AlignCenter)
+        self.layoutWidget_4 = QWidget(self.frame_2)
+        self.layoutWidget_4.setObjectName(u"layoutWidget_4")
+        self.layoutWidget_4.setGeometry(QRect(30, 60, 631, 51))
+        self.horizontalLayoutAlerts_2 = QHBoxLayout(self.layoutWidget_4)
+        self.horizontalLayoutAlerts_2.setObjectName(u"horizontalLayoutAlerts_2")
+        self.horizontalLayoutAlerts_2.setContentsMargins(0, 0, 0, 0)
+        self.frameTotalLogs = QFrame(self.layoutWidget_4)
+        self.frameTotalLogs.setObjectName(u"frameTotalLogs")
+        self.frameTotalLogs.setFrameShape(QFrame.StyledPanel)
+        self.frameTotalLogs.setFrameShadow(QFrame.Sunken)
+        self.lblTotalLogs = QLabel(self.frameTotalLogs)
+        self.lblTotalLogs.setObjectName(u"lblTotalLogs")
+        self.lblTotalLogs.setGeometry(QRect(10, 20, 151, 31))
+        self.lblTotalLogs.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
+        self.lblTotalLogs.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.lblTotalAlertsTitle_2 = QLabel(self.frameTotalLogs)
+        self.lblTotalAlertsTitle_2.setObjectName(u"lblTotalAlertsTitle_2")
+        self.lblTotalAlertsTitle_2.setGeometry(QRect(10, 0, 171, 20))
+        self.lblTotalAlertsTitle_2.setStyleSheet(u"\n"
+"font: 75 12pt \"MS Shell Dlg 2\";")
+        self.lblTotalAlertsTitle_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.horizontalLayoutAlerts_2.addWidget(self.frameTotalLogs)
+
+        self.frameWarnings = QFrame(self.layoutWidget_4)
+        self.frameWarnings.setObjectName(u"frameWarnings")
+        self.frameWarnings.setFrameShape(QFrame.StyledPanel)
+        self.frameWarnings.setFrameShadow(QFrame.Sunken)
+        self.lblWarningLogs = QLabel(self.frameWarnings)
+        self.lblWarningLogs.setObjectName(u"lblWarningLogs")
+        self.lblWarningLogs.setGeometry(QRect(10, 20, 161, 31))
+        self.lblWarningLogs.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
+        self.lblWarningLogs.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.lblHighTitle_2 = QLabel(self.frameWarnings)
+        self.lblHighTitle_2.setObjectName(u"lblHighTitle_2")
+        self.lblHighTitle_2.setGeometry(QRect(10, 0, 181, 20))
+        self.lblHighTitle_2.setStyleSheet(u"\n"
+"font: 75 12pt \"MS Shell Dlg 2\";")
+        self.lblHighTitle_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.horizontalLayoutAlerts_2.addWidget(self.frameWarnings)
+
+        self.frameErrors = QFrame(self.layoutWidget_4)
+        self.frameErrors.setObjectName(u"frameErrors")
+        self.frameErrors.setFrameShape(QFrame.StyledPanel)
+        self.frameErrors.setFrameShadow(QFrame.Sunken)
+        self.lblCriticalTitle_2 = QLabel(self.frameErrors)
+        self.lblCriticalTitle_2.setObjectName(u"lblCriticalTitle_2")
+        self.lblCriticalTitle_2.setGeometry(QRect(10, 0, 171, 20))
+        self.lblCriticalTitle_2.setStyleSheet(u"\n"
+"font: 75 12pt \"MS Shell Dlg 2\";")
+        self.lblCriticalTitle_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.lblErrorLogs = QLabel(self.frameErrors)
+        self.lblErrorLogs.setObjectName(u"lblErrorLogs")
+        self.lblErrorLogs.setGeometry(QRect(10, 20, 131, 31))
+        self.lblErrorLogs.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
+        self.lblErrorLogs.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.horizontalLayoutAlerts_2.addWidget(self.frameErrors)
+
+        self.label_17 = QLabel(self.frame_2)
+        self.label_17.setObjectName(u"label_17")
+        self.label_17.setGeometry(QRect(30, 110, 47, 20))
+        self.horizontalLayoutWidget_16 = QWidget(self.frame_2)
+        self.horizontalLayoutWidget_16.setObjectName(u"horizontalLayoutWidget_16")
+        self.horizontalLayoutWidget_16.setGeometry(QRect(30, 130, 491, 31))
+        self.horizontalLayout_5 = QHBoxLayout(self.horizontalLayoutWidget_16)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.txtSearchLogs = QLineEdit(self.horizontalLayoutWidget_16)
+        self.txtSearchLogs.setObjectName(u"txtSearchLogs")
+
+        self.horizontalLayout_5.addWidget(self.txtSearchLogs)
+
+        self.cmbLogLevel = QComboBox(self.horizontalLayoutWidget_16)
+        self.cmbLogLevel.addItem("")
+        self.cmbLogLevel.addItem("")
+        self.cmbLogLevel.addItem("")
+        self.cmbLogLevel.addItem("")
+        self.cmbLogLevel.addItem("")
+        self.cmbLogLevel.setObjectName(u"cmbLogLevel")
+
+        self.horizontalLayout_5.addWidget(self.cmbLogLevel)
+
+        self.label_18 = QLabel(self.frame_2)
+        self.label_18.setObjectName(u"label_18")
+        self.label_18.setGeometry(QRect(30, 160, 91, 21))
+        self.tableLogs = QTableWidget(self.frame_2)
+        if (self.tableLogs.columnCount() < 4):
+            self.tableLogs.setColumnCount(4)
+        __qtablewidgetitem27 = QTableWidgetItem()
+        self.tableLogs.setHorizontalHeaderItem(0, __qtablewidgetitem27)
+        __qtablewidgetitem28 = QTableWidgetItem()
+        self.tableLogs.setHorizontalHeaderItem(1, __qtablewidgetitem28)
+        __qtablewidgetitem29 = QTableWidgetItem()
+        self.tableLogs.setHorizontalHeaderItem(2, __qtablewidgetitem29)
+        __qtablewidgetitem30 = QTableWidgetItem()
+        self.tableLogs.setHorizontalHeaderItem(3, __qtablewidgetitem30)
+        self.tableLogs.setObjectName(u"tableLogs")
+        self.tableLogs.setGeometry(QRect(30, 180, 631, 181))
+        self.horizontalLayoutWidget_17 = QWidget(self.frame_2)
+        self.horizontalLayoutWidget_17.setObjectName(u"horizontalLayoutWidget_17")
+        self.horizontalLayoutWidget_17.setGeometry(QRect(500, 360, 160, 41))
+        self.horizontalLayout_12 = QHBoxLayout(self.horizontalLayoutWidget_17)
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.horizontalLayout_12.setContentsMargins(0, 0, 0, 0)
+        self.btnClearLogs = QPushButton(self.horizontalLayoutWidget_17)
+        self.btnClearLogs.setObjectName(u"btnClearLogs")
+
+        self.horizontalLayout_12.addWidget(self.btnClearLogs)
+
+        self.btnExportLogs = QPushButton(self.horizontalLayoutWidget_17)
+        self.btnExportLogs.setObjectName(u"btnExportLogs")
+
+        self.horizontalLayout_12.addWidget(self.btnExportLogs)
+
+
+        self.LayoutLogs.addWidget(self.frame_2)
+
         self.stackedWidget.addWidget(self.pageLogs)
         self.pageAnalytics = QWidget()
         self.pageAnalytics.setObjectName(u"pageAnalytics")
@@ -859,19 +992,19 @@ class Ui_MainWindow(object):
         self.frameAnalyticsContent.setFrameShadow(QFrame.Sunken)
         self.label_15 = QLabel(self.frameAnalyticsContent)
         self.label_15.setObjectName(u"label_15")
-        self.label_15.setGeometry(QRect(20, 90, 101, 16))
-        self.label_15.setAlignment(Qt.AlignCenter)
+        self.label_15.setGeometry(QRect(20, 80, 101, 16))
+        self.label_15.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.label_16 = QLabel(self.frameAnalyticsContent)
         self.label_16.setObjectName(u"label_16")
-        self.label_16.setGeometry(QRect(360, 90, 101, 16))
+        self.label_16.setGeometry(QRect(350, 80, 101, 16))
         self.label_16.setAlignment(Qt.AlignCenter)
-        self.layoutWidget = QWidget(self.frameAnalyticsContent)
-        self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(20, 110, 661, 121))
-        self.ThreatsAnalyticsLay = QHBoxLayout(self.layoutWidget)
+        self.layoutWidget1 = QWidget(self.frameAnalyticsContent)
+        self.layoutWidget1.setObjectName(u"layoutWidget1")
+        self.layoutWidget1.setGeometry(QRect(20, 100, 661, 121))
+        self.ThreatsAnalyticsLay = QHBoxLayout(self.layoutWidget1)
         self.ThreatsAnalyticsLay.setObjectName(u"ThreatsAnalyticsLay")
         self.ThreatsAnalyticsLay.setContentsMargins(0, 0, 0, 0)
-        self.frameThreatActivity = QFrame(self.layoutWidget)
+        self.frameThreatActivity = QFrame(self.layoutWidget1)
         self.frameThreatActivity.setObjectName(u"frameThreatActivity")
         self.frameThreatActivity.setFrameShape(QFrame.StyledPanel)
         self.frameThreatActivity.setFrameShadow(QFrame.Sunken)
@@ -884,7 +1017,7 @@ class Ui_MainWindow(object):
 
         self.ThreatsAnalyticsLay.addWidget(self.frameThreatActivity)
 
-        self.frameAttackBreakdown = QFrame(self.layoutWidget)
+        self.frameAttackBreakdown = QFrame(self.layoutWidget1)
         self.frameAttackBreakdown.setObjectName(u"frameAttackBreakdown")
         self.frameAttackBreakdown.setFrameShape(QFrame.StyledPanel)
         self.frameAttackBreakdown.setFrameShadow(QFrame.Sunken)
@@ -1038,21 +1171,16 @@ class Ui_MainWindow(object):
         self.frameReports.setObjectName(u"frameReports")
         self.frameReports.setFrameShape(QFrame.StyledPanel)
         self.frameReports.setFrameShadow(QFrame.Sunken)
-        self.lblReportsTitle = QLabel(self.frameReports)
-        self.lblReportsTitle.setObjectName(u"lblReportsTitle")
-        self.lblReportsTitle.setGeometry(QRect(0, 0, 697, 31))
-        self.lblReportsTitle.setStyleSheet(u"font: 75 22pt \"MS Shell Dlg 2\";")
-        self.lblReportsTitle.setAlignment(Qt.AlignCenter)
         self.horizontalLayoutWidget_3 = QWidget(self.frameReports)
         self.horizontalLayoutWidget_3.setObjectName(u"horizontalLayoutWidget_3")
-        self.horizontalLayoutWidget_3.setGeometry(QRect(16, 60, 661, 41))
-        self.horizontalLayout_12 = QHBoxLayout(self.horizontalLayoutWidget_3)
-        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
-        self.horizontalLayout_12.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayoutWidget_3.setGeometry(QRect(16, 40, 661, 41))
+        self.layoutGenerateReport = QHBoxLayout(self.horizontalLayoutWidget_3)
+        self.layoutGenerateReport.setObjectName(u"layoutGenerateReport")
+        self.layoutGenerateReport.setContentsMargins(0, 0, 0, 0)
         self.lblReportType = QLabel(self.horizontalLayoutWidget_3)
         self.lblReportType.setObjectName(u"lblReportType")
 
-        self.horizontalLayout_12.addWidget(self.lblReportType)
+        self.layoutGenerateReport.addWidget(self.lblReportType)
 
         self.cmbReportType = QComboBox(self.horizontalLayoutWidget_3)
         self.cmbReportType.addItem("")
@@ -1061,44 +1189,44 @@ class Ui_MainWindow(object):
         self.cmbReportType.addItem("")
         self.cmbReportType.setObjectName(u"cmbReportType")
 
-        self.horizontalLayout_12.addWidget(self.cmbReportType)
+        self.layoutGenerateReport.addWidget(self.cmbReportType)
 
         self.lblDateFrom = QLabel(self.horizontalLayoutWidget_3)
         self.lblDateFrom.setObjectName(u"lblDateFrom")
 
-        self.horizontalLayout_12.addWidget(self.lblDateFrom)
+        self.layoutGenerateReport.addWidget(self.lblDateFrom)
 
         self.dateReportFrom = QDateEdit(self.horizontalLayoutWidget_3)
         self.dateReportFrom.setObjectName(u"dateReportFrom")
         self.dateReportFrom.setCalendarPopup(True)
 
-        self.horizontalLayout_12.addWidget(self.dateReportFrom)
+        self.layoutGenerateReport.addWidget(self.dateReportFrom)
 
         self.lblDateTo = QLabel(self.horizontalLayoutWidget_3)
         self.lblDateTo.setObjectName(u"lblDateTo")
 
-        self.horizontalLayout_12.addWidget(self.lblDateTo)
+        self.layoutGenerateReport.addWidget(self.lblDateTo)
 
         self.dateReportTo = QDateEdit(self.horizontalLayoutWidget_3)
         self.dateReportTo.setObjectName(u"dateReportTo")
 
-        self.horizontalLayout_12.addWidget(self.dateReportTo)
+        self.layoutGenerateReport.addWidget(self.dateReportTo)
 
         self.btnGenerateReport = QPushButton(self.horizontalLayoutWidget_3)
         self.btnGenerateReport.setObjectName(u"btnGenerateReport")
 
-        self.horizontalLayout_12.addWidget(self.btnGenerateReport)
+        self.layoutGenerateReport.addWidget(self.btnGenerateReport)
 
         self.lblReportsSubtitle = QLabel(self.frameReports)
         self.lblReportsSubtitle.setObjectName(u"lblReportsSubtitle")
-        self.lblReportsSubtitle.setGeometry(QRect(0, 30, 697, 21))
+        self.lblReportsSubtitle.setGeometry(QRect(0, 20, 261, 21))
         self.lblReportsSubtitle.setAlignment(Qt.AlignCenter)
         self.horizontalLayoutWidget_13 = QWidget(self.frameReports)
         self.horizontalLayoutWidget_13.setObjectName(u"horizontalLayoutWidget_13")
-        self.horizontalLayoutWidget_13.setGeometry(QRect(50, 110, 591, 41))
-        self.horizontalLayout_13 = QHBoxLayout(self.horizontalLayoutWidget_13)
-        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
-        self.horizontalLayout_13.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayoutWidget_13.setGeometry(QRect(50, 90, 591, 41))
+        self.layoutReportCards = QHBoxLayout(self.horizontalLayoutWidget_13)
+        self.layoutReportCards.setObjectName(u"layoutReportCards")
+        self.layoutReportCards.setContentsMargins(0, 0, 0, 0)
         self.frameReportsTotalAlerts = QFrame(self.horizontalLayoutWidget_13)
         self.frameReportsTotalAlerts.setObjectName(u"frameReportsTotalAlerts")
         self.frameReportsTotalAlerts.setFrameShape(QFrame.StyledPanel)
@@ -1112,7 +1240,7 @@ class Ui_MainWindow(object):
         self.label_22.setGeometry(QRect(-4, 20, 151, 21))
         self.label_22.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_13.addWidget(self.frameReportsTotalAlerts)
+        self.layoutReportCards.addWidget(self.frameReportsTotalAlerts)
 
         self.frameHighAlerts = QFrame(self.horizontalLayoutWidget_13)
         self.frameHighAlerts.setObjectName(u"frameHighAlerts")
@@ -1127,7 +1255,7 @@ class Ui_MainWindow(object):
         self.lblReportHighAlerts_2.setGeometry(QRect(0, 20, 141, 21))
         self.lblReportHighAlerts_2.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_13.addWidget(self.frameHighAlerts)
+        self.layoutReportCards.addWidget(self.frameHighAlerts)
 
         self.frameMediumAlerts = QFrame(self.horizontalLayoutWidget_13)
         self.frameMediumAlerts.setObjectName(u"frameMediumAlerts")
@@ -1142,7 +1270,7 @@ class Ui_MainWindow(object):
         self.lblReportMediumAlerts.setGeometry(QRect(0, 20, 141, 21))
         self.lblReportMediumAlerts.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_13.addWidget(self.frameMediumAlerts)
+        self.layoutReportCards.addWidget(self.frameMediumAlerts)
 
         self.frameLowAlerts = QFrame(self.horizontalLayoutWidget_13)
         self.frameLowAlerts.setObjectName(u"frameLowAlerts")
@@ -1157,23 +1285,28 @@ class Ui_MainWindow(object):
         self.lblReportLowAlerts.setGeometry(QRect(0, 20, 141, 21))
         self.lblReportLowAlerts.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_13.addWidget(self.frameLowAlerts)
+        self.layoutReportCards.addWidget(self.frameLowAlerts)
 
         self.tableReports = QTableWidget(self.frameReports)
         if (self.tableReports.columnCount() < 5):
             self.tableReports.setColumnCount(5)
-        __qtablewidgetitem27 = QTableWidgetItem()
-        self.tableReports.setHorizontalHeaderItem(0, __qtablewidgetitem27)
-        __qtablewidgetitem28 = QTableWidgetItem()
-        self.tableReports.setHorizontalHeaderItem(1, __qtablewidgetitem28)
-        __qtablewidgetitem29 = QTableWidgetItem()
-        self.tableReports.setHorizontalHeaderItem(2, __qtablewidgetitem29)
-        __qtablewidgetitem30 = QTableWidgetItem()
-        self.tableReports.setHorizontalHeaderItem(3, __qtablewidgetitem30)
         __qtablewidgetitem31 = QTableWidgetItem()
-        self.tableReports.setHorizontalHeaderItem(4, __qtablewidgetitem31)
+        __qtablewidgetitem31.setTextAlignment(Qt.AlignCenter)
+        self.tableReports.setHorizontalHeaderItem(0, __qtablewidgetitem31)
+        __qtablewidgetitem32 = QTableWidgetItem()
+        __qtablewidgetitem32.setTextAlignment(Qt.AlignCenter)
+        self.tableReports.setHorizontalHeaderItem(1, __qtablewidgetitem32)
+        __qtablewidgetitem33 = QTableWidgetItem()
+        __qtablewidgetitem33.setTextAlignment(Qt.AlignCenter)
+        self.tableReports.setHorizontalHeaderItem(2, __qtablewidgetitem33)
+        __qtablewidgetitem34 = QTableWidgetItem()
+        __qtablewidgetitem34.setTextAlignment(Qt.AlignCenter)
+        self.tableReports.setHorizontalHeaderItem(3, __qtablewidgetitem34)
+        __qtablewidgetitem35 = QTableWidgetItem()
+        __qtablewidgetitem35.setTextAlignment(Qt.AlignCenter)
+        self.tableReports.setHorizontalHeaderItem(4, __qtablewidgetitem35)
         self.tableReports.setObjectName(u"tableReports")
-        self.tableReports.setGeometry(QRect(10, 160, 681, 181))
+        self.tableReports.setGeometry(QRect(90, 140, 511, 201))
         self.tableReports.setLayoutDirection(Qt.LeftToRight)
         self.tableReports.setFrameShape(QFrame.StyledPanel)
         self.tableReports.setFrameShadow(QFrame.Sunken)
@@ -1183,23 +1316,23 @@ class Ui_MainWindow(object):
         self.horizontalLayoutWidget_14 = QWidget(self.frameReports)
         self.horizontalLayoutWidget_14.setObjectName(u"horizontalLayoutWidget_14")
         self.horizontalLayoutWidget_14.setGeometry(QRect(190, 350, 321, 31))
-        self.horizontalLayout_14 = QHBoxLayout(self.horizontalLayoutWidget_14)
-        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
-        self.horizontalLayout_14.setContentsMargins(0, 0, 0, 0)
+        self.layourRepotsBtns = QHBoxLayout(self.horizontalLayoutWidget_14)
+        self.layourRepotsBtns.setObjectName(u"layourRepotsBtns")
+        self.layourRepotsBtns.setContentsMargins(0, 0, 0, 0)
         self.btnExportCSV_2 = QPushButton(self.horizontalLayoutWidget_14)
         self.btnExportCSV_2.setObjectName(u"btnExportCSV_2")
 
-        self.horizontalLayout_14.addWidget(self.btnExportCSV_2)
+        self.layourRepotsBtns.addWidget(self.btnExportCSV_2)
 
         self.btnExportPDF = QPushButton(self.horizontalLayoutWidget_14)
         self.btnExportPDF.setObjectName(u"btnExportPDF")
 
-        self.horizontalLayout_14.addWidget(self.btnExportPDF)
+        self.layourRepotsBtns.addWidget(self.btnExportPDF)
 
         self.btnResetReport = QPushButton(self.horizontalLayoutWidget_14)
         self.btnResetReport.setObjectName(u"btnResetReport")
 
-        self.horizontalLayout_14.addWidget(self.btnResetReport)
+        self.layourRepotsBtns.addWidget(self.btnResetReport)
 
 
         self.verticalLayout.addWidget(self.frameReports)
@@ -1219,7 +1352,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 697, 397))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 98, 28))
         self.frameSettings = QFrame(self.scrollAreaWidgetContents)
         self.frameSettings.setObjectName(u"frameSettings")
         self.frameSettings.setGeometry(QRect(0, 0, 701, 399))
@@ -1228,10 +1361,10 @@ class Ui_MainWindow(object):
         self.frameSettings.setFrameShadow(QFrame.Raised)
         self.groupDetection = QGroupBox(self.frameSettings)
         self.groupDetection.setObjectName(u"groupDetection")
-        self.groupDetection.setGeometry(QRect(10, 120, 311, 151))
+        self.groupDetection.setGeometry(QRect(10, 170, 201, 151))
         self.formLayoutWidget_2 = QWidget(self.groupDetection)
         self.formLayoutWidget_2.setObjectName(u"formLayoutWidget_2")
-        self.formLayoutWidget_2.setGeometry(QRect(20, 20, 281, 126))
+        self.formLayoutWidget_2.setGeometry(QRect(20, 20, 151, 126))
         self.formLayout_3 = QFormLayout(self.formLayoutWidget_2)
         self.formLayout_3.setObjectName(u"formLayout_3")
         self.formLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -1292,7 +1425,7 @@ class Ui_MainWindow(object):
 
         self.groupAppearance = QGroupBox(self.frameSettings)
         self.groupAppearance.setObjectName(u"groupAppearance")
-        self.groupAppearance.setGeometry(QRect(360, 170, 251, 81))
+        self.groupAppearance.setGeometry(QRect(450, 140, 241, 91))
         self.formLayoutWidget_3 = QWidget(self.groupAppearance)
         self.formLayoutWidget_3.setObjectName(u"formLayoutWidget_3")
         self.formLayoutWidget_3.setGeometry(QRect(20, 20, 211, 54))
@@ -1324,27 +1457,17 @@ class Ui_MainWindow(object):
 
         self.groupBox_3 = QGroupBox(self.frameSettings)
         self.groupBox_3.setObjectName(u"groupBox_3")
-        self.groupBox_3.setGeometry(QRect(10, 10, 351, 111))
+        self.groupBox_3.setGeometry(QRect(10, 50, 431, 111))
         self.formLayoutWidget = QWidget(self.groupBox_3)
         self.formLayoutWidget.setObjectName(u"formLayoutWidget")
-        self.formLayoutWidget.setGeometry(QRect(20, 20, 321, 80))
+        self.formLayoutWidget.setGeometry(QRect(20, 50, 161, 51))
         self.formLayoutGenSettings = QFormLayout(self.formLayoutWidget)
         self.formLayoutGenSettings.setObjectName(u"formLayoutGenSettings")
         self.formLayoutGenSettings.setContentsMargins(0, 0, 0, 0)
-        self.cmbSetInterface = QComboBox(self.formLayoutWidget)
-        self.cmbSetInterface.setObjectName(u"cmbSetInterface")
-
-        self.formLayoutGenSettings.setWidget(0, QFormLayout.ItemRole.FieldRole, self.cmbSetInterface)
-
-        self.lblInterfaces = QLabel(self.formLayoutWidget)
-        self.lblInterfaces.setObjectName(u"lblInterfaces")
-
-        self.formLayoutGenSettings.setWidget(0, QFormLayout.ItemRole.LabelRole, self.lblInterfaces)
-
         self.label_5 = QLabel(self.formLayoutWidget)
         self.label_5.setObjectName(u"label_5")
 
-        self.formLayoutGenSettings.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_5)
+        self.formLayoutGenSettings.setWidget(0, QFormLayout.ItemRole.LabelRole, self.label_5)
 
         self.spinPacketHistory = QSpinBox(self.formLayoutWidget)
         self.spinPacketHistory.setObjectName(u"spinPacketHistory")
@@ -1352,7 +1475,12 @@ class Ui_MainWindow(object):
         self.spinPacketHistory.setMaximum(10000)
         self.spinPacketHistory.setValue(500)
 
-        self.formLayoutGenSettings.setWidget(1, QFormLayout.ItemRole.FieldRole, self.spinPacketHistory)
+        self.formLayoutGenSettings.setWidget(0, QFormLayout.ItemRole.FieldRole, self.spinPacketHistory)
+
+        self.lblRefreshRate = QLabel(self.formLayoutWidget)
+        self.lblRefreshRate.setObjectName(u"lblRefreshRate")
+
+        self.formLayoutGenSettings.setWidget(1, QFormLayout.ItemRole.LabelRole, self.lblRefreshRate)
 
         self.spinRefreshRate = QSpinBox(self.formLayoutWidget)
         self.spinRefreshRate.setObjectName(u"spinRefreshRate")
@@ -1360,13 +1488,14 @@ class Ui_MainWindow(object):
         self.spinRefreshRate.setMaximum(10000)
         self.spinRefreshRate.setValue(100)
 
-        self.formLayoutGenSettings.setWidget(2, QFormLayout.ItemRole.FieldRole, self.spinRefreshRate)
+        self.formLayoutGenSettings.setWidget(1, QFormLayout.ItemRole.FieldRole, self.spinRefreshRate)
 
-        self.lblRefreshRate = QLabel(self.formLayoutWidget)
-        self.lblRefreshRate.setObjectName(u"lblRefreshRate")
-
-        self.formLayoutGenSettings.setWidget(2, QFormLayout.ItemRole.LabelRole, self.lblRefreshRate)
-
+        self.cmbSetInterface = QComboBox(self.groupBox_3)
+        self.cmbSetInterface.setObjectName(u"cmbSetInterface")
+        self.cmbSetInterface.setGeometry(QRect(131, 20, 281, 20))
+        self.lblInterfaces = QLabel(self.groupBox_3)
+        self.lblInterfaces.setObjectName(u"lblInterfaces")
+        self.lblInterfaces.setGeometry(QRect(20, 20, 105, 20))
         self.horizontalLayoutWidget_8 = QWidget(self.frameSettings)
         self.horizontalLayoutWidget_8.setObjectName(u"horizontalLayoutWidget_8")
         self.horizontalLayoutWidget_8.setGeometry(QRect(120, 350, 431, 41))
@@ -1385,7 +1514,7 @@ class Ui_MainWindow(object):
 
         self.groupNotifications = QGroupBox(self.frameSettings)
         self.groupNotifications.setObjectName(u"groupNotifications")
-        self.groupNotifications.setGeometry(QRect(370, 10, 301, 151))
+        self.groupNotifications.setGeometry(QRect(220, 170, 221, 151))
         self.verticalLayoutWidget_8 = QWidget(self.groupNotifications)
         self.verticalLayoutWidget_8.setObjectName(u"verticalLayoutWidget_8")
         self.verticalLayoutWidget_8.setGeometry(QRect(20, 20, 181, 121))
@@ -1412,6 +1541,11 @@ class Ui_MainWindow(object):
 
         self.LayoutSetNoti.addWidget(self.chkPlaySound)
 
+        self.lblSettingsTitle = QLabel(self.frameSettings)
+        self.lblSettingsTitle.setObjectName(u"lblSettingsTitle")
+        self.lblSettingsTitle.setGeometry(QRect(20, 0, 141, 51))
+        self.lblSettingsTitle.setStyleSheet(u"font: 75 22pt \"MS Shell Dlg 2\";")
+        self.lblSettingsTitle.setAlignment(Qt.AlignCenter)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
         self.verticalLayoutSettings.addWidget(self.scrollArea)
@@ -1432,19 +1566,16 @@ class Ui_MainWindow(object):
         self.frameSimulator.setObjectName(u"frameSimulator")
         self.frameSimulator.setFrameShape(QFrame.StyledPanel)
         self.frameSimulator.setFrameShadow(QFrame.Sunken)
-        self.btnRunSimulation = QPushButton(self.frameSimulator)
-        self.btnRunSimulation.setObjectName(u"btnRunSimulation")
-        self.btnRunSimulation.setGeometry(QRect(500, 80, 101, 31))
         self.lblSimulatorTitle = QLabel(self.frameSimulator)
         self.lblSimulatorTitle.setObjectName(u"lblSimulatorTitle")
-        self.lblSimulatorTitle.setGeometry(QRect(10, 10, 681, 41))
+        self.lblSimulatorTitle.setGeometry(QRect(20, 20, 191, 41))
         font1 = QFont()
         font1.setPointSize(18)
         self.lblSimulatorTitle.setFont(font1)
         self.lblSimulatorTitle.setAlignment(Qt.AlignCenter)
         self.horizontalLayoutWidget_10 = QWidget(self.frameSimulator)
         self.horizontalLayoutWidget_10.setObjectName(u"horizontalLayoutWidget_10")
-        self.horizontalLayoutWidget_10.setGeometry(QRect(30, 70, 271, 41))
+        self.horizontalLayoutWidget_10.setGeometry(QRect(30, 60, 271, 31))
         self.horizontalLayout_10 = QHBoxLayout(self.horizontalLayoutWidget_10)
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
         self.horizontalLayout_10.setContentsMargins(0, 0, 0, 0)
@@ -1460,7 +1591,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayoutWidget_12 = QWidget(self.frameSimulator)
         self.horizontalLayoutWidget_12.setObjectName(u"horizontalLayoutWidget_12")
-        self.horizontalLayoutWidget_12.setGeometry(QRect(320, 70, 141, 41))
+        self.horizontalLayoutWidget_12.setGeometry(QRect(30, 100, 211, 41))
         self.horizontalLayout_11 = QHBoxLayout(self.horizontalLayoutWidget_12)
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
         self.horizontalLayout_11.setContentsMargins(0, 0, 0, 0)
@@ -1474,9 +1605,14 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_11.addWidget(self.spinSimPacketCount)
 
+        self.btnRunSimulation = QPushButton(self.horizontalLayoutWidget_12)
+        self.btnRunSimulation.setObjectName(u"btnRunSimulation")
+
+        self.horizontalLayout_11.addWidget(self.btnRunSimulation)
+
         self.horizontalLayoutWidget_15 = QWidget(self.frameSimulator)
         self.horizontalLayoutWidget_15.setObjectName(u"horizontalLayoutWidget_15")
-        self.horizontalLayoutWidget_15.setGeometry(QRect(30, 130, 641, 231))
+        self.horizontalLayoutWidget_15.setGeometry(QRect(30, 150, 641, 231))
         self.horizontalLayout_15 = QHBoxLayout(self.horizontalLayoutWidget_15)
         self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
         self.horizontalLayout_15.setContentsMargins(0, 0, 0, 0)
@@ -1536,18 +1672,18 @@ class Ui_MainWindow(object):
         self.tableDatabase = QTableWidget(self.frameDatabase)
         if (self.tableDatabase.columnCount() < 12):
             self.tableDatabase.setColumnCount(12)
-        __qtablewidgetitem32 = QTableWidgetItem()
-        self.tableDatabase.setHorizontalHeaderItem(0, __qtablewidgetitem32)
-        __qtablewidgetitem33 = QTableWidgetItem()
-        self.tableDatabase.setHorizontalHeaderItem(1, __qtablewidgetitem33)
-        __qtablewidgetitem34 = QTableWidgetItem()
-        self.tableDatabase.setHorizontalHeaderItem(2, __qtablewidgetitem34)
-        __qtablewidgetitem35 = QTableWidgetItem()
-        self.tableDatabase.setHorizontalHeaderItem(3, __qtablewidgetitem35)
         __qtablewidgetitem36 = QTableWidgetItem()
-        self.tableDatabase.setHorizontalHeaderItem(4, __qtablewidgetitem36)
+        self.tableDatabase.setHorizontalHeaderItem(0, __qtablewidgetitem36)
         __qtablewidgetitem37 = QTableWidgetItem()
-        self.tableDatabase.setHorizontalHeaderItem(5, __qtablewidgetitem37)
+        self.tableDatabase.setHorizontalHeaderItem(1, __qtablewidgetitem37)
+        __qtablewidgetitem38 = QTableWidgetItem()
+        self.tableDatabase.setHorizontalHeaderItem(2, __qtablewidgetitem38)
+        __qtablewidgetitem39 = QTableWidgetItem()
+        self.tableDatabase.setHorizontalHeaderItem(3, __qtablewidgetitem39)
+        __qtablewidgetitem40 = QTableWidgetItem()
+        self.tableDatabase.setHorizontalHeaderItem(4, __qtablewidgetitem40)
+        __qtablewidgetitem41 = QTableWidgetItem()
+        self.tableDatabase.setHorizontalHeaderItem(5, __qtablewidgetitem41)
         self.tableDatabase.setObjectName(u"tableDatabase")
         self.tableDatabase.setGeometry(QRect(10, 121, 681, 231))
         self.tableDatabase.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -1660,7 +1796,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 957, 21))
+        self.menubar.setGeometry(QRect(0, 0, 968, 21))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         self.menuScan = QMenu(self.menubar)
@@ -1702,13 +1838,13 @@ class Ui_MainWindow(object):
         self.actionClearAlerts.setText(QCoreApplication.translate("MainWindow", u"Clear Table", None))
         self.actionExportReport.setText(QCoreApplication.translate("MainWindow", u"Export Report", None))
         self.actionAbout.setText(QCoreApplication.translate("MainWindow", u"About AW3NIDS", None))
-        self.iblLogo.setText(QCoreApplication.translate("MainWindow", u"AW3NIDS", None))
+        self.iblAppLogo.setText(QCoreApplication.translate("MainWindow", u"AW3NIDS", None))
         self.btnDashboard.setText(QCoreApplication.translate("MainWindow", u"Dashboard", None))
         self.btnLiveCapture.setText(QCoreApplication.translate("MainWindow", u"Live Capture", None))
         self.btnAlerts.setText(QCoreApplication.translate("MainWindow", u"Alerts", None))
+        self.btnSimulator.setText(QCoreApplication.translate("MainWindow", u"Attack Simulator", None))
         self.btnAnalytics.setText(QCoreApplication.translate("MainWindow", u"Analytics", None))
         self.btnDatabase.setText(QCoreApplication.translate("MainWindow", u"Database", None))
-        self.btnSimulator.setText(QCoreApplication.translate("MainWindow", u"Attack Simulator", None))
         self.btnReports.setText(QCoreApplication.translate("MainWindow", u"Reports", None))
         self.btnLogs.setText(QCoreApplication.translate("MainWindow", u"Logs", None))
         self.btnSettings.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
@@ -1745,7 +1881,9 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem10 = self.tableRecentAlerts.horizontalHeaderItem(5)
         ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Length", None))
         self.lblRecentAlerts.setText(QCoreApplication.translate("MainWindow", u"Recent Alerts", None))
-        self.cmbInterface.setCurrentText("")
+        self.cmbInterface.setItemText(0, QCoreApplication.translate("MainWindow", u"None", None))
+
+        self.cmbInterface.setCurrentText(QCoreApplication.translate("MainWindow", u"None", None))
         self.lblInterface.setText(QCoreApplication.translate("MainWindow", u"Interface", None))
         self.btnRefreshInterfaces.setText(QCoreApplication.translate("MainWindow", u"Refresh", None))
         self.lblLivePacketTable.setText(QCoreApplication.translate("MainWindow", u"Live Packet Table", None))
@@ -1836,6 +1974,33 @@ class Ui_MainWindow(object):
         self.btnBlockIP.setText(QCoreApplication.translate("MainWindow", u"Block IP", None))
         self.btnUnblockIP.setText(QCoreApplication.translate("MainWindow", u"Unblock IP", None))
         self.AlertsPageTitle.setText(QCoreApplication.translate("MainWindow", u"Alerts", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"View and investigate AW3NIDS application events", None))
+        self.LogsPageTitle.setText(QCoreApplication.translate("MainWindow", u"Logs", None))
+        self.lblTotalLogs.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.lblTotalAlertsTitle_2.setText(QCoreApplication.translate("MainWindow", u"Total Logs", None))
+        self.lblWarningLogs.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.lblHighTitle_2.setText(QCoreApplication.translate("MainWindow", u"Warnings ", None))
+        self.lblCriticalTitle_2.setText(QCoreApplication.translate("MainWindow", u"Errors", None))
+        self.lblErrorLogs.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.label_17.setText(QCoreApplication.translate("MainWindow", u"Filters", None))
+        self.txtSearchLogs.setPlaceholderText(QCoreApplication.translate("MainWindow", u"search messages...", None))
+        self.cmbLogLevel.setItemText(0, QCoreApplication.translate("MainWindow", u"All Levels", None))
+        self.cmbLogLevel.setItemText(1, QCoreApplication.translate("MainWindow", u"INFO", None))
+        self.cmbLogLevel.setItemText(2, QCoreApplication.translate("MainWindow", u"WARNING", None))
+        self.cmbLogLevel.setItemText(3, QCoreApplication.translate("MainWindow", u"ERROR", None))
+        self.cmbLogLevel.setItemText(4, QCoreApplication.translate("MainWindow", u"CRITICAL", None))
+
+        self.label_18.setText(QCoreApplication.translate("MainWindow", u"Event history", None))
+        ___qtablewidgetitem27 = self.tableLogs.horizontalHeaderItem(0)
+        ___qtablewidgetitem27.setText(QCoreApplication.translate("MainWindow", u"Time", None))
+        ___qtablewidgetitem28 = self.tableLogs.horizontalHeaderItem(1)
+        ___qtablewidgetitem28.setText(QCoreApplication.translate("MainWindow", u"Level", None))
+        ___qtablewidgetitem29 = self.tableLogs.horizontalHeaderItem(2)
+        ___qtablewidgetitem29.setText(QCoreApplication.translate("MainWindow", u"Category", None))
+        ___qtablewidgetitem30 = self.tableLogs.horizontalHeaderItem(3)
+        ___qtablewidgetitem30.setText(QCoreApplication.translate("MainWindow", u"Message", None))
+        self.btnClearLogs.setText(QCoreApplication.translate("MainWindow", u"Clear Logs", None))
+        self.btnExportLogs.setText(QCoreApplication.translate("MainWindow", u"Export Logs", None))
         self.label_15.setText(QCoreApplication.translate("MainWindow", u"Threat Activity", None))
         self.label_16.setText(QCoreApplication.translate("MainWindow", u"Attack Breakdown", None))
         self.lblPortScan.setText(QCoreApplication.translate("MainWindow", u"Port Scan", None))
@@ -1855,7 +2020,6 @@ class Ui_MainWindow(object):
         self.lblUptime.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"Uptime", None))
         self.AnalyitcsPageTitle.setText(QCoreApplication.translate("MainWindow", u"Analytics", None))
-        self.lblReportsTitle.setText(QCoreApplication.translate("MainWindow", u"Reports", None))
         self.lblReportType.setText(QCoreApplication.translate("MainWindow", u"Report Type:", None))
         self.cmbReportType.setItemText(0, QCoreApplication.translate("MainWindow", u"All Alerts", None))
         self.cmbReportType.setItemText(1, QCoreApplication.translate("MainWindow", u"SYN Flood", None))
@@ -1874,16 +2038,16 @@ class Ui_MainWindow(object):
         self.lblReportMediumAlerts.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.lblReportLowAlertsTitle.setText(QCoreApplication.translate("MainWindow", u"Low Severity", None))
         self.lblReportLowAlerts.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        ___qtablewidgetitem27 = self.tableReports.horizontalHeaderItem(0)
-        ___qtablewidgetitem27.setText(QCoreApplication.translate("MainWindow", u"Threat", None))
-        ___qtablewidgetitem28 = self.tableReports.horizontalHeaderItem(1)
-        ___qtablewidgetitem28.setText(QCoreApplication.translate("MainWindow", u"Source IP", None))
-        ___qtablewidgetitem29 = self.tableReports.horizontalHeaderItem(2)
-        ___qtablewidgetitem29.setText(QCoreApplication.translate("MainWindow", u"Destination IP ", None))
-        ___qtablewidgetitem30 = self.tableReports.horizontalHeaderItem(3)
-        ___qtablewidgetitem30.setText(QCoreApplication.translate("MainWindow", u"Severity", None))
-        ___qtablewidgetitem31 = self.tableReports.horizontalHeaderItem(4)
-        ___qtablewidgetitem31.setText(QCoreApplication.translate("MainWindow", u"Count", None))
+        ___qtablewidgetitem31 = self.tableReports.horizontalHeaderItem(0)
+        ___qtablewidgetitem31.setText(QCoreApplication.translate("MainWindow", u"Time", None))
+        ___qtablewidgetitem32 = self.tableReports.horizontalHeaderItem(1)
+        ___qtablewidgetitem32.setText(QCoreApplication.translate("MainWindow", u"Threat", None))
+        ___qtablewidgetitem33 = self.tableReports.horizontalHeaderItem(2)
+        ___qtablewidgetitem33.setText(QCoreApplication.translate("MainWindow", u"Source IP", None))
+        ___qtablewidgetitem34 = self.tableReports.horizontalHeaderItem(3)
+        ___qtablewidgetitem34.setText(QCoreApplication.translate("MainWindow", u"Severity", None))
+        ___qtablewidgetitem35 = self.tableReports.horizontalHeaderItem(4)
+        ___qtablewidgetitem35.setText(QCoreApplication.translate("MainWindow", u"Status", None))
         self.btnExportCSV_2.setText(QCoreApplication.translate("MainWindow", u"Export CSV", None))
         self.btnExportPDF.setText(QCoreApplication.translate("MainWindow", u"Export PDF", None))
         self.btnResetReport.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
@@ -1902,9 +2066,9 @@ class Ui_MainWindow(object):
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Theme", None))
         self.label_14.setText(QCoreApplication.translate("MainWindow", u"Accent Color", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"General Settings", None))
-        self.lblInterfaces.setText(QCoreApplication.translate("MainWindow", u"Monitoring Interface: ", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Packet History", None))
         self.lblRefreshRate.setText(QCoreApplication.translate("MainWindow", u"Refresh Rate (ms)", None))
+        self.lblInterfaces.setText(QCoreApplication.translate("MainWindow", u"Monitoring Interface: ", None))
         self.btnSaveSettings.setText(QCoreApplication.translate("MainWindow", u"Save Settings", None))
         self.btnResetSettings.setText(QCoreApplication.translate("MainWindow", u"Reset Settings", None))
         self.groupNotifications.setTitle(QCoreApplication.translate("MainWindow", u"Notifications", None))
@@ -1912,28 +2076,29 @@ class Ui_MainWindow(object):
         self.chkWriteLog.setText(QCoreApplication.translate("MainWindow", u"Write Log File", None))
         self.chkPopup.setText(QCoreApplication.translate("MainWindow", u"Popup Notification", None))
         self.chkPlaySound.setText(QCoreApplication.translate("MainWindow", u"Play Sounds", None))
-        self.btnRunSimulation.setText(QCoreApplication.translate("MainWindow", u"Start Simulation", None))
+        self.lblSettingsTitle.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
         self.lblSimulatorTitle.setText(QCoreApplication.translate("MainWindow", u"Attack Simulator", None))
         self.lblAttactTypeSim.setText(QCoreApplication.translate("MainWindow", u"Attack Type:", None))
         self.lblPacketsTitle.setText(QCoreApplication.translate("MainWindow", u"Packets:", None))
         self.spinSimPacketCount.setSpecialValueText(QCoreApplication.translate("MainWindow", u"100", None))
+        self.btnRunSimulation.setText(QCoreApplication.translate("MainWindow", u"Start Simulation", None))
         self.btnClearLogSim.setText(QCoreApplication.translate("MainWindow", u"Clear Log", None))
         self.lblDatabaseTitle.setText(QCoreApplication.translate("MainWindow", u"Database Viewer", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Search:", None))
         self.txtSearch.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search by ip Address...", None))
         self.btnSearch.setText(QCoreApplication.translate("MainWindow", u"Search", None))
-        ___qtablewidgetitem32 = self.tableDatabase.horizontalHeaderItem(0)
-        ___qtablewidgetitem32.setText(QCoreApplication.translate("MainWindow", u"Time", None))
-        ___qtablewidgetitem33 = self.tableDatabase.horizontalHeaderItem(1)
-        ___qtablewidgetitem33.setText(QCoreApplication.translate("MainWindow", u"Threat", None))
-        ___qtablewidgetitem34 = self.tableDatabase.horizontalHeaderItem(2)
-        ___qtablewidgetitem34.setText(QCoreApplication.translate("MainWindow", u"Source IP", None))
-        ___qtablewidgetitem35 = self.tableDatabase.horizontalHeaderItem(3)
-        ___qtablewidgetitem35.setText(QCoreApplication.translate("MainWindow", u"Severity", None))
-        ___qtablewidgetitem36 = self.tableDatabase.horizontalHeaderItem(4)
-        ___qtablewidgetitem36.setText(QCoreApplication.translate("MainWindow", u"Status", None))
-        ___qtablewidgetitem37 = self.tableDatabase.horizontalHeaderItem(5)
-        ___qtablewidgetitem37.setText(QCoreApplication.translate("MainWindow", u"Details", None))
+        ___qtablewidgetitem36 = self.tableDatabase.horizontalHeaderItem(0)
+        ___qtablewidgetitem36.setText(QCoreApplication.translate("MainWindow", u"Time", None))
+        ___qtablewidgetitem37 = self.tableDatabase.horizontalHeaderItem(1)
+        ___qtablewidgetitem37.setText(QCoreApplication.translate("MainWindow", u"Threat", None))
+        ___qtablewidgetitem38 = self.tableDatabase.horizontalHeaderItem(2)
+        ___qtablewidgetitem38.setText(QCoreApplication.translate("MainWindow", u"Source IP", None))
+        ___qtablewidgetitem39 = self.tableDatabase.horizontalHeaderItem(3)
+        ___qtablewidgetitem39.setText(QCoreApplication.translate("MainWindow", u"Severity", None))
+        ___qtablewidgetitem40 = self.tableDatabase.horizontalHeaderItem(4)
+        ___qtablewidgetitem40.setText(QCoreApplication.translate("MainWindow", u"Status", None))
+        ___qtablewidgetitem41 = self.tableDatabase.horizontalHeaderItem(5)
+        ___qtablewidgetitem41.setText(QCoreApplication.translate("MainWindow", u"Details", None))
         self.btnDeleteAlert.setText(QCoreApplication.translate("MainWindow", u"Delete Selected", None))
         self.btnClearDatabase.setText(QCoreApplication.translate("MainWindow", u"Clear Database", None))
         self.btnExportCSV.setText(QCoreApplication.translate("MainWindow", u"Export CSV", None))
