@@ -4,13 +4,6 @@ Advanced Web/Network Intrusion Detection System
 
 A Python-based Network Intrusion Detection System designed to monitor network traffic, identify suspicious activities, generate security alerts, and provide network activity analysis through a graphical user interface.
 
-"Python" (https://img.shields.io/badge/Python-3.x-blue?logo=python)
-"PySide6" (https://img.shields.io/badge/GUI-PySide6-green)
-"Scapy" (https://img.shields.io/badge/Packet%20Capture-Scapy-orange)
-"SQLite" (https://img.shields.io/badge/Database-SQLite-blue?logo=sqlite)
-"Platform" (https://img.shields.io/badge/Platform-Windows-lightgrey?logo=windows)
-"Status" (https://img.shields.io/badge/Status-In%20Development-yellow)
-
 ---
 
 📌 About The Project
